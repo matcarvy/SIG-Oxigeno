@@ -2537,41 +2537,23 @@
     
     
     
+    
     <style id="nav-fixes-style">
-        /* ========== FIX DROPDOWN - SOLUCIÓN DEFINITIVA ========== */
+        /* ========== FIX DROPDOWN - SOLUCIÓN ROBUSTA (FIXED) ========== */
         
-        /* 1. Header con isolation para crear stacking context independiente */
+        /* Header con z-index alto, SIN isolation */
         .header {
             z-index: 10000 !important;
-            isolation: isolate !important;
         }
         
-        /* 2. El LI con dropdown debe ser relative */
-        .nav-menu > li {
-            position: relative !important;
+        /* Quitar backdrop-filter del logo-wrapper */
+        .logo-wrapper {
+            backdrop-filter: none !important;
         }
         
-        /* 3. Dropdown siempre encima */
-        .nav-menu > li > .dropdown {
-            position: absolute !important;
-            top: 100% !important;
-            left: 50% !important;
-            transform: translateX(-50%) !important;
-            margin-top: 8px !important;
-            z-index: 10001 !important;
-        }
-        
-        /* 4. Al hover solo cambiar visibilidad */
-        .nav-menu > li:hover > .dropdown {
-            opacity: 1 !important;
-            visibility: visible !important;
-            transform: translateX(-50%) !important;
-        }
-        
-        /* 5. Contenido debajo - sin crear stacking contexts problemáticos */
-        main, .hero, .page-hero, section, .section {
-            position: relative;
-            z-index: 1;
+        /* Contenido siempre debajo */
+        main, .hero, .page-hero, section, .section, .product-card {
+            z-index: 1 !important;
         }
         
         /* ========== INDICADOR ACTIVO ========== */
@@ -2857,8 +2839,10 @@
     
     
     
+    
     <script id="active-page-js">
     (function() {
+        // === ACTIVE PAGE ===
         var path = window.location.pathname;
         var currentPage = path.split('/').pop() || 'index';
         currentPage = currentPage.replace('.html', '');
@@ -2875,6 +2859,49 @@
             if (currentPage.startsWith('post-') && linkPage === 'blog') link.classList.add('active');
             if (['gases','soldadura','extintores','seguridad-industrial','equipos-elementos','homecare','otros'].includes(currentPage) && linkPage === 'productos') link.classList.add('active');
         });
+        
+        // === DROPDOWN FIXED POSITION ===
+        var dropdown = document.querySelector('.dropdown');
+        var productosLink = document.querySelector('a[href="productos.html"]');
+        
+        if (dropdown && productosLink) {
+            var parentLi = productosLink.parentElement;
+            
+            // Estilos iniciales del dropdown
+            dropdown.style.position = 'fixed';
+            dropdown.style.zIndex = '999999';
+            dropdown.style.opacity = '0';
+            dropdown.style.visibility = 'hidden';
+            dropdown.style.transition = 'opacity 0.3s, visibility 0.3s';
+            
+            function positionDropdown() {
+                var rect = productosLink.getBoundingClientRect();
+                dropdown.style.top = (rect.bottom + 8) + 'px';
+                dropdown.style.left = (rect.left + rect.width/2 - dropdown.offsetWidth/2) + 'px';
+            }
+            
+            function showDropdown() {
+                positionDropdown();
+                dropdown.style.opacity = '1';
+                dropdown.style.visibility = 'visible';
+            }
+            
+            function hideDropdown() {
+                dropdown.style.opacity = '0';
+                dropdown.style.visibility = 'hidden';
+            }
+            
+            // Eventos en el LI padre
+            parentLi.addEventListener('mouseenter', showDropdown);
+            parentLi.addEventListener('mouseleave', hideDropdown);
+            
+            // Reposicionar en scroll
+            window.addEventListener('scroll', function() {
+                if (dropdown.style.visibility === 'visible') {
+                    positionDropdown();
+                }
+            });
+        }
     })();
     </script>
 
