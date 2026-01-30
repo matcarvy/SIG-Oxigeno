@@ -2379,19 +2379,26 @@
     
     
     
+    
     <style id="nav-fixes-style">
-        /* Secciones con z-index bajo para no interferir con dropdown */
+        /* Secciones con z-index bajo */
         .page-hero, .section, .cta-section, main, .hero {
             position: relative;
             z-index: 1;
         }
+        
+        /* Header siempre encima */
         .header {
             z-index: 9990 !important;
         }
         
-        /* Dropdown siempre encima de todo */
+        /* Dropdown - posición debajo del header */
+        .nav-menu > li {
+            position: relative;
+        }
         .dropdown {
             z-index: 9999 !important;
+            top: calc(100% + 15px) !important;
         }
         
         /* Indicador activo - Desktop */
@@ -2419,14 +2426,18 @@
             .header:not(.scrolled) .nav-menu > li > a.active {
                 color: #ffffff !important;
             }
+            /* Botón Contáctanos siempre blanco en desktop */
+            .header .btn-primary {
+                color: #ffffff !important;
+            }
         }
         
-        /* MÓVIL - textos siempre oscuros */
+        /* MÓVIL */
         @media (max-width: 768px) {
             .dropdown {
                 display: none !important;
             }
-            /* Textos del menú siempre visibles (gris oscuro) */
+            /* Textos del menú en gris oscuro */
             .nav-menu > li > a {
                 color: #475569 !important;
             }
@@ -2437,6 +2448,15 @@
             }
             .nav-menu > li > a.active::after {
                 display: none !important;
+            }
+            /* Botón Contáctanos - siempre texto blanco, nunca cambia */
+            .nav-menu .btn-primary,
+            .nav-menu .btn-primary.active,
+            .nav-menu a.btn-primary,
+            .nav-menu a.btn-primary.active {
+                color: #ffffff !important;
+                background: #c41e3a !important;
+                font-weight: 500 !important;
             }
         }
     </style>
@@ -2663,6 +2683,7 @@
     
     
     
+    
     <script id="active-page-js">
     (function() {
         var path = window.location.pathname;
@@ -2671,6 +2692,11 @@
         if (currentPage === '' || path === '/') currentPage = 'index';
         
         document.querySelectorAll('.nav-menu > li > a').forEach(function(link) {
+            // No aplicar active al botón Contáctanos
+            if (link.classList.contains('btn-primary') || link.classList.contains('btn')) {
+                return;
+            }
+            
             var href = link.getAttribute('href');
             var linkPage = href.replace('.html', '');
             
