@@ -2435,12 +2435,14 @@
     
     
     
+    
     <style id="nav-fixes-style">
         /* ========== FIX DROPDOWN - SOLUCIÓN DEFINITIVA ========== */
         
-        /* 1. Header siempre encima de todo el contenido */
+        /* 1. Header con isolation para crear stacking context independiente */
         .header {
             z-index: 10000 !important;
+            isolation: isolate !important;
         }
         
         /* 2. El LI con dropdown debe ser relative */
@@ -2448,7 +2450,7 @@
             position: relative !important;
         }
         
-        /* 3. Dropdown: absolute respecto al LI, NO transforms en Y */
+        /* 3. Dropdown siempre encima */
         .nav-menu > li > .dropdown {
             position: absolute !important;
             top: 100% !important;
@@ -2458,14 +2460,14 @@
             z-index: 10001 !important;
         }
         
-        /* 4. Al hover solo cambiar visibilidad, NO posición */
+        /* 4. Al hover solo cambiar visibilidad */
         .nav-menu > li:hover > .dropdown {
             opacity: 1 !important;
             visibility: visible !important;
             transform: translateX(-50%) !important;
         }
         
-        /* 5. Contenido de la página siempre debajo */
+        /* 5. Contenido debajo - sin crear stacking contexts problemáticos */
         main, .hero, .page-hero, section, .section {
             position: relative;
             z-index: 1;
@@ -2499,17 +2501,14 @@
         
         /* ========== MÓVIL ========== */
         @media (max-width: 768px) {
-            /* Ocultar dropdown en móvil */
             .dropdown {
                 display: none !important;
             }
             
-            /* Links en gris oscuro */
             .nav-menu > li > a:not(.nav-cta) {
                 color: #475569 !important;
             }
             
-            /* Activo en rojo */
             .nav-menu > li > a.active:not(.nav-cta) {
                 color: #c41e3a !important;
                 font-weight: 600;
@@ -2518,7 +2517,6 @@
                 display: none !important;
             }
             
-            /* Botón Contáctanos - SIEMPRE blanco sobre rojo */
             .nav-menu > li > a.nav-cta {
                 color: #ffffff !important;
                 background: #c41e3a !important;
@@ -2745,6 +2743,7 @@
         });
     </script>
 
+    
     
     
     
