@@ -2382,47 +2382,48 @@
     
     
     
+    
     <style id="nav-fixes-style">
-        /* ========== DROPDOWN ESTABLE ========== */
+        /* ========== FIX DROPDOWN - SOLUCIÓN DEFINITIVA ========== */
         
-        /* El LI padre debe ser relativo */
+        /* 1. Header siempre encima de todo el contenido */
+        .header {
+            z-index: 10000 !important;
+        }
+        
+        /* 2. El LI con dropdown debe ser relative */
         .nav-menu > li {
             position: relative !important;
         }
         
-        /* Dropdown siempre pegado al padre */
-        .dropdown {
+        /* 3. Dropdown: absolute respecto al LI, NO transforms en Y */
+        .nav-menu > li > .dropdown {
             position: absolute !important;
             top: 100% !important;
             left: 50% !important;
             transform: translateX(-50%) !important;
-            margin-top: 0 !important;
-            z-index: 999999 !important;
+            margin-top: 8px !important;
+            z-index: 10001 !important;
         }
         
-        /* Al hover, solo cambiar opacidad, NO mover */
-        .nav-menu > li:hover .dropdown {
+        /* 4. Al hover solo cambiar visibilidad, NO posición */
+        .nav-menu > li:hover > .dropdown {
+            opacity: 1 !important;
+            visibility: visible !important;
             transform: translateX(-50%) !important;
         }
         
-        /* Header siempre encima */
-        .header {
-            z-index: 99999 !important;
-        }
-        
-        /* Contenido siempre debajo */
-        .page-hero, .section, .cta-section, main, .hero, 
-        .hero-container, .product-card, .card, section {
+        /* 5. Contenido de la página siempre debajo */
+        main, .hero, .page-hero, section, .section {
             position: relative;
-            z-index: 1 !important;
+            z-index: 1;
         }
         
         /* ========== INDICADOR ACTIVO ========== */
-        .nav-menu > li > a.active {
+        .nav-menu > li > a.active:not(.nav-cta) {
             color: #c41e3a !important;
-            position: relative;
         }
-        .nav-menu > li > a.active::after {
+        .nav-menu > li > a.active:not(.nav-cta)::after {
             content: '';
             position: absolute;
             bottom: -5px;
@@ -2434,26 +2435,29 @@
             border-radius: 2px;
         }
         
-        /* Header transparente - solo desktop */
+        /* Header transparente - desktop */
         @media (min-width: 769px) {
-            .header:not(.scrolled) .nav-menu > li > a {
+            .header:not(.scrolled) .nav-menu > li > a:not(.nav-cta) {
                 color: rgba(255,255,255,0.9);
             }
-            .header:not(.scrolled) .nav-menu > li > a.active {
+            .header:not(.scrolled) .nav-menu > li > a.active:not(.nav-cta) {
                 color: #ffffff !important;
             }
         }
         
         /* ========== MÓVIL ========== */
         @media (max-width: 768px) {
+            /* Ocultar dropdown en móvil */
             .dropdown {
                 display: none !important;
             }
             
-            .nav-menu > li > a {
+            /* Links en gris oscuro */
+            .nav-menu > li > a:not(.nav-cta) {
                 color: #475569 !important;
             }
             
+            /* Activo en rojo */
             .nav-menu > li > a.active:not(.nav-cta) {
                 color: #c41e3a !important;
                 font-weight: 600;
@@ -2462,10 +2466,8 @@
                 display: none !important;
             }
             
-            /* Contáctanos siempre blanco sobre rojo */
-            .nav-menu > li > a.nav-cta,
-            .nav-menu > li > a.nav-cta.active,
-            a.nav-cta {
+            /* Botón Contáctanos - SIEMPRE blanco sobre rojo */
+            .nav-menu > li > a.nav-cta {
                 color: #ffffff !important;
                 background: #c41e3a !important;
             }
@@ -2692,6 +2694,7 @@
     
     
     
+    
     <script id="active-page-js">
     (function() {
         var path = window.location.pathname;
@@ -2706,15 +2709,9 @@
             if (!href) return;
             var linkPage = href.replace('.html', '');
             
-            if (linkPage === currentPage) {
-                link.classList.add('active');
-            }
-            if (currentPage.startsWith('post-') && linkPage === 'blog') {
-                link.classList.add('active');
-            }
-            if (['gases','soldadura','extintores','seguridad-industrial','equipos-elementos','homecare','otros'].includes(currentPage) && linkPage === 'productos') {
-                link.classList.add('active');
-            }
+            if (linkPage === currentPage) link.classList.add('active');
+            if (currentPage.startsWith('post-') && linkPage === 'blog') link.classList.add('active');
+            if (['gases','soldadura','extintores','seguridad-industrial','equipos-elementos','homecare','otros'].includes(currentPage) && linkPage === 'productos') link.classList.add('active');
         });
     })();
     </script>
