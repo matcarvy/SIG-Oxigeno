@@ -2385,10 +2385,11 @@
     
     
     
+    
     <style id="nav-fixes-style">
-        /* ========== FIX DROPDOWN - SOLUCIÓN ROBUSTA (FIXED) ========== */
+        /* ========== FIX DROPDOWN - SOLUCIÓN ROBUSTA ========== */
         
-        /* Header con z-index alto, SIN isolation */
+        /* Header con z-index alto */
         .header {
             z-index: 10000 !important;
         }
@@ -2401,6 +2402,18 @@
         /* Contenido siempre debajo */
         main, .hero, .page-hero, section, .section, .product-card {
             z-index: 1 !important;
+        }
+        
+        /* DESHABILITAR hover CSS del dropdown - JS lo controla */
+        .nav-menu > li:hover .dropdown {
+            opacity: 0 !important;
+            visibility: hidden !important;
+        }
+        
+        /* Dropdown controlado por JS */
+        .dropdown.js-visible {
+            opacity: 1 !important;
+            visibility: visible !important;
         }
         
         /* ========== INDICADOR ACTIVO ========== */
@@ -2810,6 +2823,7 @@
     
     
     
+    
     <script id="active-page-js">
     (function() {
         // === ACTIVE PAGE ===
@@ -2837,37 +2851,37 @@
         if (dropdown && productosLink) {
             var parentLi = productosLink.parentElement;
             
-            // Estilos iniciales del dropdown
+            // Aplicar position fixed al dropdown
             dropdown.style.position = 'fixed';
             dropdown.style.zIndex = '999999';
-            dropdown.style.opacity = '0';
-            dropdown.style.visibility = 'hidden';
-            dropdown.style.transition = 'opacity 0.3s, visibility 0.3s';
             
             function positionDropdown() {
                 var rect = productosLink.getBoundingClientRect();
                 dropdown.style.top = (rect.bottom + 8) + 'px';
-                dropdown.style.left = (rect.left + rect.width/2 - dropdown.offsetWidth/2) + 'px';
+                var left = rect.left + (rect.width / 2) - (dropdown.offsetWidth / 2);
+                dropdown.style.left = left + 'px';
             }
             
             function showDropdown() {
                 positionDropdown();
-                dropdown.style.opacity = '1';
-                dropdown.style.visibility = 'visible';
+                dropdown.classList.add('js-visible');
             }
             
             function hideDropdown() {
-                dropdown.style.opacity = '0';
-                dropdown.style.visibility = 'hidden';
+                dropdown.classList.remove('js-visible');
             }
             
-            // Eventos en el LI padre
+            // Eventos
             parentLi.addEventListener('mouseenter', showDropdown);
             parentLi.addEventListener('mouseleave', hideDropdown);
             
+            // Mantener abierto cuando mouse está en dropdown
+            dropdown.addEventListener('mouseenter', showDropdown);
+            dropdown.addEventListener('mouseleave', hideDropdown);
+            
             // Reposicionar en scroll
             window.addEventListener('scroll', function() {
-                if (dropdown.style.visibility === 'visible') {
+                if (dropdown.classList.contains('js-visible')) {
                     positionDropdown();
                 }
             });
