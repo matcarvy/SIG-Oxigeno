@@ -1,0 +1,8 @@
+{
+  "name": "sig-blog-stats",
+  "version": "1.0.0",
+  "description": "Backend para stats del blog SIG",
+  "dependencies": {
+    "@supabase/supabase-js": "^2.39.0"
+  }
+}

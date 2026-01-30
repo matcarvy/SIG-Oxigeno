@@ -1,0 +1,11 @@
+# robots.txt para sigoxigeno.com
+# Servicio Integral de Gases - SIG
+
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://sigoxigeno.com/sitemap.xml
+
+# Bloquear página 404 de indexación
+Disallow: /404.html
