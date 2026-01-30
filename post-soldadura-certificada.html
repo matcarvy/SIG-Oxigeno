@@ -2539,34 +2539,67 @@
     
     
     
+    
     <style id="nav-fixes-style">
-        /* ========== FIX DROPDOWN - SOLUCIÓN ROBUSTA ========== */
+        /* ========== DROPDOWN SOLUCIÓN FINAL ========== */
         
-        /* Header con z-index alto */
+        /* Header z-index alto */
         .header {
             z-index: 10000 !important;
         }
         
-        /* Quitar backdrop-filter del logo-wrapper */
-        .logo-wrapper {
+        /* Quitar TODOS los backdrop-filter que pueden causar problemas */
+        .header .logo-wrapper,
+        .header.scrolled {
             backdrop-filter: none !important;
+            -webkit-backdrop-filter: none !important;
         }
         
-        /* Contenido siempre debajo */
+        /* Contenido debajo */
         main, .hero, .page-hero, section, .section, .product-card {
             z-index: 1 !important;
         }
         
-        /* DESHABILITAR hover CSS del dropdown - JS lo controla */
-        .nav-menu > li:hover .dropdown {
-            opacity: 0 !important;
-            visibility: hidden !important;
+        /* DROPDOWN - Estilos base (se aplica cuando está en el body) */
+        #dropdown-portal {
+            position: fixed !important;
+            z-index: 999999 !important;
+            background: #ffffff;
+            min-width: 220px;
+            border-radius: 12px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.2s, visibility 0.2s;
+            padding: 0.5rem 0;
         }
         
-        /* Dropdown controlado por JS */
-        .dropdown.js-visible {
+        #dropdown-portal.show {
             opacity: 1 !important;
             visibility: visible !important;
+        }
+        
+        #dropdown-portal li {
+            list-style: none;
+        }
+        
+        #dropdown-portal a {
+            display: block;
+            padding: 0.75rem 1.5rem;
+            color: #475569;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+        
+        #dropdown-portal a:hover {
+            background: #f1f5f9;
+            color: #c41e3a;
+        }
+        
+        /* Ocultar dropdown original */
+        .nav-menu .dropdown {
+            display: none !important;
         }
         
         /* ========== INDICADOR ACTIVO ========== */
@@ -2597,7 +2630,7 @@
         
         /* ========== MÓVIL ========== */
         @media (max-width: 768px) {
-            .dropdown {
+            #dropdown-portal {
                 display: none !important;
             }
             
@@ -2851,8 +2884,9 @@
     
     
     
+    
     <script id="active-page-js">
-    (function() {
+    document.addEventListener('DOMContentLoaded', function() {
         // === ACTIVE PAGE ===
         var path = window.location.pathname;
         var currentPage = path.split('/').pop() || 'index';
@@ -2861,59 +2895,68 @@
         
         document.querySelectorAll('.nav-menu > li > a').forEach(function(link) {
             if (link.classList.contains('nav-cta')) return;
-            
             var href = link.getAttribute('href');
             if (!href) return;
             var linkPage = href.replace('.html', '');
-            
             if (linkPage === currentPage) link.classList.add('active');
             if (currentPage.startsWith('post-') && linkPage === 'blog') link.classList.add('active');
             if (['gases','soldadura','extintores','seguridad-industrial','equipos-elementos','homecare','otros'].includes(currentPage) && linkPage === 'productos') link.classList.add('active');
         });
         
-        // === DROPDOWN FIXED POSITION ===
-        var dropdown = document.querySelector('.dropdown');
+        // === DROPDOWN PORTAL ===
         var productosLink = document.querySelector('a[href="productos.html"]');
+        if (!productosLink) return;
         
-        if (dropdown && productosLink) {
-            var parentLi = productosLink.parentElement;
-            
-            // Aplicar position fixed al dropdown
-            dropdown.style.position = 'fixed';
-            dropdown.style.zIndex = '999999';
-            
-            function positionDropdown() {
-                var rect = productosLink.getBoundingClientRect();
-                dropdown.style.top = (rect.bottom + 8) + 'px';
-                var left = rect.left + (rect.width / 2) - (dropdown.offsetWidth / 2);
-                dropdown.style.left = left + 'px';
-            }
-            
-            function showDropdown() {
-                positionDropdown();
-                dropdown.classList.add('js-visible');
-            }
-            
-            function hideDropdown() {
-                dropdown.classList.remove('js-visible');
-            }
-            
-            // Eventos
-            parentLi.addEventListener('mouseenter', showDropdown);
-            parentLi.addEventListener('mouseleave', hideDropdown);
-            
-            // Mantener abierto cuando mouse está en dropdown
-            dropdown.addEventListener('mouseenter', showDropdown);
-            dropdown.addEventListener('mouseleave', hideDropdown);
-            
-            // Reposicionar en scroll
-            window.addEventListener('scroll', function() {
-                if (dropdown.classList.contains('js-visible')) {
-                    positionDropdown();
-                }
-            });
+        var parentLi = productosLink.parentElement;
+        var originalDropdown = parentLi.querySelector('.dropdown');
+        if (!originalDropdown) return;
+        
+        // Crear portal dropdown en el body
+        var portal = document.createElement('div');
+        portal.id = 'dropdown-portal';
+        portal.innerHTML = originalDropdown.innerHTML;
+        document.body.appendChild(portal);
+        
+        var hideTimeout;
+        
+        function positionAndShow() {
+            clearTimeout(hideTimeout);
+            var rect = productosLink.getBoundingClientRect();
+            portal.style.top = (rect.bottom + 8) + 'px';
+            portal.style.left = (rect.left + rect.width/2 - portal.offsetWidth/2) + 'px';
+            portal.classList.add('show');
         }
-    })();
+        
+        function hide() {
+            hideTimeout = setTimeout(function() {
+                portal.classList.remove('show');
+            }, 100);
+        }
+        
+        function cancelHide() {
+            clearTimeout(hideTimeout);
+        }
+        
+        // Eventos en el link de Productos
+        productosLink.addEventListener('mouseenter', positionAndShow);
+        parentLi.addEventListener('mouseleave', hide);
+        
+        // Eventos en el portal
+        portal.addEventListener('mouseenter', function() {
+            cancelHide();
+            portal.classList.add('show');
+        });
+        portal.addEventListener('mouseleave', hide);
+        
+        // Actualizar posición en scroll
+        window.addEventListener('scroll', function() {
+            if (portal.classList.contains('show')) {
+                var rect = productosLink.getBoundingClientRect();
+                portal.style.top = (rect.bottom + 8) + 'px';
+                portal.style.left = (rect.left + rect.width/2 - portal.offsetWidth/2) + 'px';
+            }
+        });
+    });
     </script>
 
 </body>
