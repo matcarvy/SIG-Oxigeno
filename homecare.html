@@ -2380,25 +2380,25 @@
     
     
     
+    
     <style id="nav-fixes-style">
-        /* Secciones con z-index bajo */
-        .page-hero, .section, .cta-section, main, .hero {
-            position: relative;
-            z-index: 1;
-        }
+        /* ========== DESKTOP ========== */
         
-        /* Header siempre encima */
+        /* Header siempre encima de todo */
         .header {
-            z-index: 9990 !important;
+            z-index: 99999 !important;
         }
         
-        /* Dropdown - posición debajo del header */
-        .nav-menu > li {
-            position: relative;
-        }
+        /* Dropdown siempre visible encima del contenido */
         .dropdown {
-            z-index: 9999 !important;
-            top: calc(100% + 15px) !important;
+            z-index: 999999 !important;
+        }
+        
+        /* Todas las secciones de contenido abajo */
+        .page-hero, .section, .cta-section, main, .hero, 
+        .hero-container, .product-card, .card, section {
+            position: relative;
+            z-index: 1 !important;
         }
         
         /* Indicador activo - Desktop */
@@ -2426,37 +2426,39 @@
             .header:not(.scrolled) .nav-menu > li > a.active {
                 color: #ffffff !important;
             }
-            /* Botón Contáctanos siempre blanco en desktop */
-            .header .btn-primary {
-                color: #ffffff !important;
-            }
         }
         
-        /* MÓVIL */
+        /* ========== MÓVIL ========== */
         @media (max-width: 768px) {
+            /* Ocultar dropdown */
             .dropdown {
                 display: none !important;
             }
-            /* Textos del menú en gris oscuro */
+            
+            /* Todos los links del menú en gris oscuro */
             .nav-menu > li > a {
                 color: #475569 !important;
             }
-            /* Activo en rojo */
-            .nav-menu > li > a.active {
+            
+            /* Link activo en rojo - EXCEPTO nav-cta */
+            .nav-menu > li > a.active:not(.nav-cta) {
                 color: #c41e3a !important;
                 font-weight: 600;
             }
             .nav-menu > li > a.active::after {
                 display: none !important;
             }
-            /* Botón Contáctanos - siempre texto blanco, nunca cambia */
-            .nav-menu .btn-primary,
-            .nav-menu .btn-primary.active,
-            .nav-menu a.btn-primary,
-            .nav-menu a.btn-primary.active {
+            
+            /* BOTÓN CONTÁCTANOS - siempre blanco sobre rojo */
+            .nav-menu > li > a.nav-cta,
+            .nav-menu > li > a.nav-cta:hover,
+            .nav-menu > li > a.nav-cta:active,
+            .nav-menu > li > a.nav-cta:focus,
+            .nav-menu > li > a.nav-cta.active,
+            a.nav-cta,
+            a.nav-cta.active {
                 color: #ffffff !important;
                 background: #c41e3a !important;
-                font-weight: 500 !important;
             }
         }
     </style>
@@ -2691,6 +2693,7 @@
     
     
     
+    
     <script id="active-page-js">
     (function() {
         var path = window.location.pathname;
@@ -2699,12 +2702,13 @@
         if (currentPage === '' || path === '/') currentPage = 'index';
         
         document.querySelectorAll('.nav-menu > li > a').forEach(function(link) {
-            // No aplicar active al botón Contáctanos
-            if (link.classList.contains('btn-primary') || link.classList.contains('btn')) {
+            // NO aplicar active al botón Contáctanos (nav-cta)
+            if (link.classList.contains('nav-cta')) {
                 return;
             }
             
             var href = link.getAttribute('href');
+            if (!href) return;
             var linkPage = href.replace('.html', '');
             
             if (linkPage === currentPage) {
