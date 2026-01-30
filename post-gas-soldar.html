@@ -2485,6 +2485,34 @@
     <link rel="canonical" href="https://sigoxigeno.com/post-gas-soldar">
     <meta name="robots" content="index, follow">
 
+
+</head>
+
+        /* Dropdown táctil en móvil */
+        @media (max-width: 768px) {
+            .dropdown {
+                position: static;
+                transform: none;
+                box-shadow: none;
+                max-height: 0;
+                overflow: hidden;
+                opacity: 1;
+                visibility: visible;
+                transition: max-height 0.3s;
+                background: var(--gray-50);
+                border-radius: 0;
+                min-width: 100%;
+            }
+            .dropdown.show {
+                max-height: 500px;
+            }
+            .dropdown a {
+                padding-left: 3rem;
+            }
+            .nav-menu > li:hover .dropdown {
+                transform: none;
+            }
+        }
     <style id="active-indicator-style">
         /* Header transparente - texto blanco con underline rojo */
         .nav-menu > li > a.active {
@@ -2495,9 +2523,9 @@
             content: '' !important;
             position: absolute !important;
             bottom: -8px !important;
-            left: 0 !important;
-            right: 0 !important;
-            width: 100% !important;
+            left: 50% !important;
+            transform: translateX(-50%) !important;
+            width: 40px !important;
             height: 3px !important;
             background: #c41e3a !important;
             border-radius: 2px !important;
@@ -2511,9 +2539,22 @@
             bottom: -8px !important;
             background: #c41e3a !important;
         }
+        
+        /* MÓVIL - menú hamburger */
+        @media (max-width: 768px) {
+            .nav-menu > li > a.active {
+                color: #c41e3a !important;
+            }
+            .nav-menu > li > a.active::after {
+                bottom: 50% !important;
+                left: 0 !important;
+                transform: translateY(50%) !important;
+                width: 4px !important;
+                height: 24px !important;
+                border-radius: 0 2px 2px 0 !important;
+            }
+        }
     </style>
-
-</head>
     <body>
     <header class="header" id="header">
         <div class="header-container">
@@ -2756,5 +2797,33 @@
         });
     })();
     </script>
+
+    <script>
+        // Dropdown táctil para móvil
+        (function() {
+            var dropdownParents = document.querySelectorAll('.nav-menu > li');
+            dropdownParents.forEach(function(li) {
+                var dropdown = li.querySelector('.dropdown');
+                if (dropdown) {
+                    var link = li.querySelector('a');
+                    link.addEventListener('click', function(e) {
+                        if (window.innerWidth <= 768) {
+                            e.preventDefault();
+                            dropdown.classList.toggle('show');
+                        }
+                    });
+                }
+            });
+            
+            document.addEventListener('click', function(e) {
+                if (!e.target.closest('.nav-menu')) {
+                    document.querySelectorAll('.dropdown.show').forEach(function(d) {
+                        d.classList.remove('show');
+                    });
+                }
+            });
+        })();
+    </script>
+
 </body>
 </html>
