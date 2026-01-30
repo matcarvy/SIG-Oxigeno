@@ -2378,10 +2378,19 @@
 
     
     
+    
     <style id="nav-fixes-style">
-        /* Dropdown con z-index alto */
+        /* Secciones con z-index bajo para no interferir con dropdown */
+        .page-hero, .section, .cta-section, main, .hero {
+            position: relative;
+            z-index: 1;
+        }
+        .header {
+            z-index: 9990 !important;
+        }
+        
+        /* Dropdown siempre encima de todo */
         .dropdown {
-            z-index: 9999;
             z-index: 9999 !important;
         }
         
@@ -2402,26 +2411,29 @@
             border-radius: 2px;
         }
         
-        /* Header transparente */
-        .header:not(.scrolled) .nav-menu > li > a {
-            color: rgba(255,255,255,0.9);
-        }
-        .header:not(.scrolled) .nav-menu > li > a.active {
-            color: #ffffff !important;
+        /* Header transparente - solo desktop */
+        @media (min-width: 769px) {
+            .header:not(.scrolled) .nav-menu > li > a {
+                color: rgba(255,255,255,0.9);
+            }
+            .header:not(.scrolled) .nav-menu > li > a.active {
+                color: #ffffff !important;
+            }
         }
         
-        /* MÓVIL */
+        /* MÓVIL - textos siempre oscuros */
         @media (max-width: 768px) {
             .dropdown {
-            z-index: 9999;
                 display: none !important;
             }
-            /* Indicador simple - solo texto rojo */
+            /* Textos del menú siempre visibles (gris oscuro) */
+            .nav-menu > li > a {
+                color: #475569 !important;
+            }
+            /* Activo en rojo */
             .nav-menu > li > a.active {
                 color: #c41e3a !important;
                 font-weight: 600;
-                background: transparent !important;
-                border-left: none !important;
             }
             .nav-menu > li > a.active::after {
                 display: none !important;
@@ -2643,6 +2655,7 @@
         });
     </script>
 
+    
     
     
     <script id="active-page-js">
