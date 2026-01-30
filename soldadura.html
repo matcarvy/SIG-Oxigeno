@@ -234,7 +234,7 @@
             position: absolute;
             top: calc(100% + 10px);
             left: 50%;
-            transform: translateX(-50%) translateY(10px);
+            transform: translateX(-50%);
             background: var(--white);
             min-width: 220px;
             border-radius: var(--radius-md);
@@ -250,7 +250,7 @@
             z-index: 9999;
             opacity: 1;
             visibility: visible;
-            transform: translateX(-50%) translateY(0);
+            transform: translateX(-50%);
         }
         
         .dropdown a {
@@ -2381,27 +2381,43 @@
     
     
     
+    
     <style id="nav-fixes-style">
-        /* ========== DESKTOP ========== */
+        /* ========== DROPDOWN ESTABLE ========== */
         
-        /* Header siempre encima de todo */
+        /* El LI padre debe ser relativo */
+        .nav-menu > li {
+            position: relative !important;
+        }
+        
+        /* Dropdown siempre pegado al padre */
+        .dropdown {
+            position: absolute !important;
+            top: 100% !important;
+            left: 50% !important;
+            transform: translateX(-50%) !important;
+            margin-top: 0 !important;
+            z-index: 999999 !important;
+        }
+        
+        /* Al hover, solo cambiar opacidad, NO mover */
+        .nav-menu > li:hover .dropdown {
+            transform: translateX(-50%) !important;
+        }
+        
+        /* Header siempre encima */
         .header {
             z-index: 99999 !important;
         }
         
-        /* Dropdown siempre visible encima del contenido */
-        .dropdown {
-            z-index: 999999 !important;
-        }
-        
-        /* Todas las secciones de contenido abajo */
+        /* Contenido siempre debajo */
         .page-hero, .section, .cta-section, main, .hero, 
         .hero-container, .product-card, .card, section {
             position: relative;
             z-index: 1 !important;
         }
         
-        /* Indicador activo - Desktop */
+        /* ========== INDICADOR ACTIVO ========== */
         .nav-menu > li > a.active {
             color: #c41e3a !important;
             position: relative;
@@ -2430,17 +2446,14 @@
         
         /* ========== MÓVIL ========== */
         @media (max-width: 768px) {
-            /* Ocultar dropdown */
             .dropdown {
                 display: none !important;
             }
             
-            /* Todos los links del menú en gris oscuro */
             .nav-menu > li > a {
                 color: #475569 !important;
             }
             
-            /* Link activo en rojo - EXCEPTO nav-cta */
             .nav-menu > li > a.active:not(.nav-cta) {
                 color: #c41e3a !important;
                 font-weight: 600;
@@ -2449,14 +2462,10 @@
                 display: none !important;
             }
             
-            /* BOTÓN CONTÁCTANOS - siempre blanco sobre rojo */
+            /* Contáctanos siempre blanco sobre rojo */
             .nav-menu > li > a.nav-cta,
-            .nav-menu > li > a.nav-cta:hover,
-            .nav-menu > li > a.nav-cta:active,
-            .nav-menu > li > a.nav-cta:focus,
             .nav-menu > li > a.nav-cta.active,
-            a.nav-cta,
-            a.nav-cta.active {
+            a.nav-cta {
                 color: #ffffff !important;
                 background: #c41e3a !important;
             }
@@ -2746,6 +2755,7 @@
     
     
     
+    
     <script id="active-page-js">
     (function() {
         var path = window.location.pathname;
@@ -2754,10 +2764,7 @@
         if (currentPage === '' || path === '/') currentPage = 'index';
         
         document.querySelectorAll('.nav-menu > li > a').forEach(function(link) {
-            // NO aplicar active al botón Contáctanos (nav-cta)
-            if (link.classList.contains('nav-cta')) {
-                return;
-            }
+            if (link.classList.contains('nav-cta')) return;
             
             var href = link.getAttribute('href');
             if (!href) return;
