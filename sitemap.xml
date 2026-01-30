@@ -7,111 +7,105 @@
         <priority>1.0</priority>
     </url>
     <url>
-        <loc>https://sigoxigeno.com/nosotros</loc>
+        <loc>https://sigoxigeno.com/nosotros.html</loc>
         <lastmod>2026-01-27</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://sigoxigeno.com/productos</loc>
+        <loc>https://sigoxigeno.com/productos.html</loc>
         <lastmod>2026-01-27</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://sigoxigeno.com/gases</loc>
+        <loc>https://sigoxigeno.com/gases.html</loc>
         <lastmod>2026-01-27</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://sigoxigeno.com/soldadura</loc>
+        <loc>https://sigoxigeno.com/soldadura.html</loc>
         <lastmod>2026-01-27</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://sigoxigeno.com/extintores</loc>
+        <loc>https://sigoxigeno.com/extintores.html</loc>
         <lastmod>2026-01-27</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://sigoxigeno.com/seguridad-industrial</loc>
+        <loc>https://sigoxigeno.com/seguridad-industrial.html</loc>
         <lastmod>2026-01-27</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://sigoxigeno.com/equipos-elementos</loc>
+        <loc>https://sigoxigeno.com/equipos-elementos.html</loc>
         <lastmod>2026-01-27</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://sigoxigeno.com/homecare</loc>
+        <loc>https://sigoxigeno.com/homecare.html</loc>
         <lastmod>2026-01-27</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://sigoxigeno.com/otros</loc>
+        <loc>https://sigoxigeno.com/otros.html</loc>
         <lastmod>2026-01-27</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.6</priority>
     </url>
     <url>
-        <loc>https://sigoxigeno.com/servicios</loc>
+        <loc>https://sigoxigeno.com/servicios.html</loc>
         <lastmod>2026-01-27</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://sigoxigeno.com/contactenos</loc>
+        <loc>https://sigoxigeno.com/contactenos.html</loc>
         <lastmod>2026-01-27</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://sigoxigeno.com/blog</loc>
+        <loc>https://sigoxigeno.com/blog.html</loc>
         <lastmod>2026-01-27</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://sigoxigeno.com/post-gas-soldar</loc>
+        <loc>https://sigoxigeno.com/post-gas-soldar.html</loc>
         <lastmod>2026-01-27</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.6</priority>
     </url>
     <url>
-        <loc>https://sigoxigeno.com/post-oxigeno-industria</loc>
+        <loc>https://sigoxigeno.com/post-oxigeno-industria.html</loc>
         <lastmod>2026-01-27</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.6</priority>
     </url>
     <url>
-        <loc>https://sigoxigeno.com/post-argon-industria</loc>
+        <loc>https://sigoxigeno.com/post-argon-industria.html</loc>
         <lastmod>2026-01-27</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.6</priority>
     </url>
     <url>
-        <loc>https://sigoxigeno.com/post-soldadura-certificada</loc>
+        <loc>https://sigoxigeno.com/post-soldadura-certificada.html</loc>
         <lastmod>2026-01-27</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.6</priority>
     </url>
     <url>
-        <loc>https://sigoxigeno.com/politicas</loc>
+        <loc>https://sigoxigeno.com/politicas.html</loc>
         <lastmod>2026-01-27</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.3</priority>
     </url>
-  <url>
-    <loc>https://sigoxigeno.com/post-oxigeno-diferencia</loc>
-    <lastmod>2024-03-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
 </urlset>

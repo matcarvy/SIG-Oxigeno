@@ -67,7 +67,6 @@
             left: 0;
             right: 0;
             height: 2px;
-            z-index: 2;
             background: linear-gradient(90deg, var(--sig-red), var(--sig-green), var(--sig-blue));
             opacity: 0.6;
         }
@@ -187,7 +186,7 @@
             to { opacity: 1; transform: translateY(0); }
         }
         
-        .nav-menu > li { position: relative; z-index: 10; }
+        .nav-menu > li { position: relative; }
         
         .nav-menu > li > a {
             display: block;
@@ -202,6 +201,7 @@
         }
         
         .nav-menu > li > a:hover {
+            background: rgba(255,255,255,0.1);
             color: var(--white);
         }
         
@@ -230,7 +230,6 @@
         }
         
         .dropdown {
-            z-index: 100;
             position: absolute;
             top: calc(100% + 10px);
             left: 50%;
@@ -247,7 +246,6 @@
         }
         
         .nav-menu > li:hover .dropdown {
-            z-index: 100;
             opacity: 1;
             visibility: visible;
             transform: translateX(-50%) translateY(0);
@@ -286,7 +284,6 @@
             display: block;
             width: 24px;
             height: 2px;
-            z-index: 2;
             background: currentColor;
             margin: 5px 0;
             transition: all 0.3s;
@@ -308,7 +305,7 @@
             position: absolute;
             inset: 0;
             background: url('https://static.wixstatic.com/media/69845a_d41e342becd9464dbc44ccd0f583b7fb~mv2.jpg') center/cover;
-            opacity: 0.15;
+            opacity: 0.4;
         }
         
         /* ✅ MEJORA 5: Marca de agua SIG muy sutil */
@@ -353,6 +350,7 @@
             align-items: center;
             gap: 0.5rem;
             padding: 0.5rem 1rem;
+            background: rgba(255,255,255,0.1);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255,255,255,0.15);
             border-radius: var(--radius-sm);
@@ -397,7 +395,7 @@
             width: 100%;
             height: 4px;
             background: var(--sig-red);
-            opacity: 0.35;
+            opacity: 0.4;
             border-radius: 2px;
             animation: underlineGrow 1s ease-out 1s both;
         }
@@ -455,6 +453,7 @@
         }
         
         .btn-secondary {
+            background: rgba(255,255,255,0.1);
             color: var(--white);
             border: 1px solid rgba(255,255,255,0.2);
             backdrop-filter: blur(10px);
@@ -702,7 +701,7 @@
         .about-content p {
             color: var(--gray-600);
             margin-bottom: 1rem;
-            font-size: 1.1rem;
+            font-size: 1.05rem;
         }
         
         .about-features {
@@ -761,7 +760,7 @@
         
         /* ============ CTA ============ */
         .cta {
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
             position: relative;
             overflow: hidden;
         }
@@ -770,11 +769,11 @@
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.3) 100%);
+            background: url('https://static.wixstatic.com/media/55a39e648ffb49c0bbd253dc5aae32e1.jpg') center/cover;
+            opacity: 0.15;
         }
         
         .cta-container {
-            z-index: 2;
             position: relative;
             z-index: 2;
             max-width: 800px;
@@ -866,6 +865,7 @@
         .footer-social a {
             width: 44px;
             height: 44px;
+            background: rgba(255,255,255,0.1);
             border-radius: var(--radius-sm);
             display: flex;
             align-items: center;
@@ -1061,12 +1061,13 @@
         .page-hero {
             position: relative;
             padding: 10rem 2rem 5rem;
-            background: #1a1a2e;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
             text-align: center;
             overflow: hidden;
         }
         
         .page-hero::before {
+            opacity_placeholder: replace;
             content: '';
             position: absolute;
             inset: 0;
@@ -1078,8 +1079,8 @@
             content: '';
             position: absolute;
             inset: 0;
-            background: transparent;
-            z-index: 2;
+            background: linear-gradient(135deg, rgba(26, 26, 46, 0.85) 0%, rgba(22, 33, 62, 0.9) 100%);
+            z-index: 1;
         }
         
         .page-hero-content {
@@ -1121,13 +1122,13 @@
         }
         
         .section {
-            padding: 3.5rem 2rem;
+            padding: 5rem 2rem;
         }
         
         .section-header {
             text-align: center;
             max-width: 700px;
-            margin: 0 auto 2.5rem;
+            margin: 0 auto 3rem;
         }
         
         .section-label {
@@ -1171,7 +1172,7 @@
         .content-text p {
             color: var(--gray-600);
             margin-bottom: 1.5rem;
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             line-height: 1.8;
         }
         
@@ -1409,79 +1410,54 @@
         }
         
         /* Blog */
-        
         .blog-grid {
-            max-width: 900px;
+            max-width: 1200px;
             margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
         }
         
         .blog-card {
             background: var(--white);
-            border-radius: var(--radius-md);
+            border-radius: var(--radius-lg);
             overflow: hidden;
             box-shadow: var(--shadow-md);
             transition: all 0.3s;
-            display: flex;
-            flex-direction: row;
-            align-items: stretch;
         }
         
         .blog-card:hover {
-            transform: translateY(-3px);
+            transform: translateY(-5px);
             box-shadow: var(--shadow-xl);
         }
         
         .blog-card-image {
-            width: 200px;
-            min-width: 200px;
-            height: 150px;
+            height: 200px;
             overflow: hidden;
-            flex-shrink: 0;
         }
         
         .blog-card-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.3s;
-        }
-        
-        .blog-card:hover .blog-card-image img {
-            transform: scale(1.05);
         }
         
         .blog-card-content {
-            padding: 1.25rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            flex-grow: 1;
+            padding: 1.5rem;
         }
         
         .blog-card-meta {
-            display: flex;
-            gap: 1rem;
-            font-size: 0.8rem;
-            color: var(--gray-500);
-            margin-bottom: 0.5rem;
-        }
-        
-        .blog-date, .blog-read {
-            display: flex;
-            align-items: center;
-            gap: 0.25rem;
+            font-size: 0.85rem;
+            color: var(--gray-400);
+            margin-bottom: 0.75rem;
         }
         
         .blog-card-content h3 {
             font-family: var(--font-display);
-            font-size: 1.1rem;
+            font-size: 1.25rem;
             font-weight: 600;
             color: var(--gray-800);
-            margin-bottom: 0.5rem;
-            line-height: 1.3;
+            margin-bottom: 0.75rem;
         }
         
         .blog-card-content h3 a {
@@ -1496,107 +1472,911 @@
         .blog-card-content p {
             font-size: 0.9rem;
             color: var(--gray-600);
-            line-height: 1.5;
-            margin-bottom: 0.75rem;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
+            line-height: 1.6;
         }
         
-        .blog-card-stats {
-            display: flex;
-            gap: 1rem;
-            padding-top: 0.75rem;
-            border-top: 1px solid var(--gray-200);
-            margin-top: auto;
+        /* Blog Article */
+        .article-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
         }
         
-        .stat-item {
-            display: flex;
+        .article-content h2 {
+            font-family: var(--font-display);
+            font-size: 1.75rem;
+            font-weight: 600;
+            color: var(--gray-800);
+            margin: 2rem 0 1rem;
+        }
+        
+        .article-content h3 {
+            font-family: var(--font-display);
+            font-size: 1.35rem;
+            font-weight: 600;
+            color: var(--gray-800);
+            margin: 1.5rem 0 0.75rem;
+        }
+        
+        .article-content p {
+            color: var(--gray-600);
+            line-height: 1.8;
+            margin-bottom: 1.25rem;
+        }
+        
+        .article-content ul, .article-content ol {
+            color: var(--gray-600);
+            margin-bottom: 1.25rem;
+            padding-left: 1.5rem;
+        }
+        
+        .article-content li {
+            margin-bottom: 0.5rem;
+            line-height: 1.7;
+        }
+        
+        @media (max-width: 768px) {
+            .content-grid, .contact-grid { grid-template-columns: 1fr; }
+            .blog-grid { grid-template-columns: 1fr; }
+        }
+
+
+    
+        /* Breadcrumbs mejorados */
+        .breadcrumb {
+            display: inline-flex;
             align-items: center;
-            gap: 0.25rem;
-            color: var(--gray-500);
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+            background: rgba(255,255,255,0.1);
+            padding: 0.5rem 1rem;
+            border-radius: var(--radius-sm);
+            backdrop-filter: blur(10px);
+        }
+        
+        .breadcrumb a {
+            color: rgba(255,255,255,0.85);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .breadcrumb a:hover { 
+            color: var(--white);
+            text-decoration: underline;
+        }
+        
+        .breadcrumb .separator {
+            color: rgba(255,255,255,0.4);
             font-size: 0.8rem;
         }
         
-        .stat-item svg {
-            width: 14px;
-            height: 14px;
-            opacity: 0.7;
+        .breadcrumb .current {
+            color: rgba(255,255,255,0.6);
+        }
+
+    
+        /* Blog cards clickeables */
+        .blog-card {
+            position: relative;
         }
         
-        .stat-item.likes {
-            color: #e74c3c;
+        .blog-card-link {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
         }
         
-        .stat-item.likes svg {
-            fill: #e74c3c;
-            opacity: 1;
+        .blog-card-content h3 a {
+            position: relative;
+            z-index: 2;
+        }
+
+    
+        /* Tarjetas completamente clickeables */
+        .product-card,
+        .card,
+        .blog-card {
+            position: relative;
         }
         
-        /* Responsive blog */
-        @media (max-width: 600px) {
-            .blog-card {
-                flex-direction: column;
+        .product-link::after,
+        .card-link::after,
+        .blog-card-content h3 a::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+        }
+        
+        .product-card:hover,
+        .card:hover,
+        .blog-card:hover {
+            cursor: pointer;
+        }
+
+    
+        /* Hover en títulos de tarjetas */
+        .product-card:hover .product-title,
+        .card:hover h3,
+        .blog-card:hover h3 a {
+            color: var(--sig-red);
+        }
+        
+        .product-title {
+            transition: color 0.3s;
+        }
+
+    
+        /* ============ MEJORAS MÓVIL Y VISUALES ============ */
+        
+        /* Logo con bordes redondeados */
+        .logo-img {
+            border-radius: 8px;
+        }
+        
+        /* Mejor legibilidad del texto en hero */
+        .hero::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                to right,
+                rgba(0, 0, 0, 0.7) 0%,
+                rgba(0, 0, 0, 0.4) 50%,
+                rgba(0, 0, 0, 0.2) 100%
+            );
+            z-index: 1;
+        }
+        
+        .hero-container {
+            position: relative;
+            z-index: 2;
+        }
+        
+        /* Text shadow para mejor legibilidad */
+        .hero-title,
+        .hero-subtitle,
+        .hero-description {
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+        
+        /* Móvil: Botón Contáctanos más pequeño */
+        @media (max-width: 768px) {
+            .nav-cta {
+                padding: 0.5rem 1rem !important;
+                font-size: 0.8rem !important;
+                margin: 0.5rem 1.5rem !important;
             }
             
-            .blog-card-image {
-                width: 100%;
-                height: 180px;
+            .logo-wrapper {
+                padding: 0.3rem 0.4rem;
+            }
+            
+            .logo-img {
+                height: 38px;
+            }
+            
+            /* Hero más legible en móvil */
+            .hero::after {
+                background: linear-gradient(
+                    to bottom,
+                    rgba(0, 0, 0, 0.6) 0%,
+                    rgba(0, 0, 0, 0.5) 100%
+                );
             }
         }
 
-        .blog-card-stats {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1rem;
-            padding-top: 1rem;
-            border-top: 1px solid var(--gray-200);
-        }
-        
-        .stat-item {
-            display: flex;
-            align-items: center;
-            gap: 0.25rem;
-            color: var(--gray-500);
-            font-size: 0.85rem;
-        }
-        
-        .stat-item svg {
-            opacity: 0.7;
-        }
-        
-        .stat-item.likes {
-            color: #e74c3c;
-        }
-        
-        .stat-item.likes svg {
-            fill: #e74c3c;
-            opacity: 1;
-        }
-
-            /* Blog responsive móvil extra */
-        @media (max-width: 480px) {
-            .blog-card-content {
-                padding: 1rem;
-            }
-            .blog-card-content h3 {
-                font-size: 1rem;
-            }
-            .blog-card-meta {
-                flex-wrap: wrap;
-                gap: 0.5rem;
+            /* Hero: mostrar más al soldador en móvil */
+        @media (max-width: 768px) {
+            .hero::before {
+                background-position: 25% center;
             }
         }
     
+        /* ============================================================
+           MEJORES PRÁCTICAS 2024-2025
+           Sistema 8pt grid | Tipografía optimizada | Spacing profesional
+           ============================================================ */
+        
+        /* === VARIABLES ACTUALIZADAS === */
+        :root {
+            /* Spacing scale (8pt grid) */
+            --space-xs: 4px;
+            --space-sm: 8px;
+            --space-md: 16px;
+            --space-lg: 24px;
+            --space-xl: 32px;
+            --space-2xl: 48px;
+            --space-3xl: 64px;
+            --space-4xl: 80px;
+            --space-5xl: 120px;
+            
+            /* Typography scale */
+            --text-xs: 0.75rem;    /* 12px */
+            --text-sm: 0.875rem;   /* 14px */
+            --text-base: 1.0625rem; /* 17px - optimal mobile */
+            --text-lg: 1.125rem;   /* 18px */
+            --text-xl: 1.25rem;    /* 20px */
+            --text-2xl: 1.5rem;    /* 24px */
+            --text-3xl: 2rem;      /* 32px */
+            --text-4xl: 2.5rem;    /* 40px */
+            --text-5xl: 3rem;      /* 48px */
+            
+            /* Line heights */
+            --leading-tight: 1.25;
+            --leading-snug: 1.375;
+            --leading-normal: 1.5;
+            --leading-relaxed: 1.625;
+            --leading-loose: 1.75;
+        }
+        
+        /* === TYPOGRAPHY GLOBAL === */
+        body {
+            font-size: var(--text-base);
+            line-height: var(--leading-relaxed);
+        }
+        
+        p {
+            margin-bottom: var(--space-md);
+            line-height: var(--leading-relaxed);
+        }
+        
+        /* Headings: más espacio arriba que abajo (1.5x) */
+        h1, h2, h3, h4, h5, h6 {
+            line-height: var(--leading-tight);
+        }
+        
+        h1 { 
+            font-size: var(--text-4xl);
+            margin-top: var(--space-4xl);
+            margin-bottom: var(--space-xl);
+        }
+        
+        h2 { 
+            font-size: var(--text-3xl);
+            margin-top: var(--space-3xl);
+            margin-bottom: var(--space-lg);
+        }
+        
+        h3 { 
+            font-size: var(--text-2xl);
+            margin-top: var(--space-2xl);
+            margin-bottom: var(--space-md);
+        }
+        
+        /* === SECTIONS SPACING === */
+        section {
+            padding-top: var(--space-4xl);
+            padding-bottom: var(--space-4xl);
+        }
+        
+        .section-header {
+            margin-bottom: var(--space-3xl);
+        }
+        
+        .section-title {
+            font-size: clamp(1.75rem, 4vw, 2.5rem);
+            margin-bottom: var(--space-md);
+        }
+        
+        .section-subtitle {
+            font-size: var(--text-lg);
+            line-height: var(--leading-relaxed);
+            max-width: 65ch; /* Óptimo: 50-75 caracteres */
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        /* === CARDS Y COMPONENTES === */
+        .product-card,
+        .card,
+        .blog-card {
+            padding: var(--space-lg);
+        }
+        
+        .product-content,
+        .card-content {
+            padding: var(--space-lg);
+        }
+        
+        .product-title,
+        .card h3 {
+            font-size: var(--text-xl);
+            margin-bottom: var(--space-sm);
+        }
+        
+        .product-description,
+        .card p {
+            font-size: var(--text-base);
+            line-height: var(--leading-relaxed);
+            color: var(--gray-600);
+        }
+        
+        /* === GRIDS === */
+        .product-grid,
+        .card-grid,
+        .services-grid {
+            gap: var(--space-xl);
+        }
+        
+        /* === HERO SPACING === */
+        .hero {
+            padding: var(--space-5xl) var(--space-lg) var(--space-4xl);
+        }
+        
+        .hero-title {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            line-height: var(--leading-tight);
+            margin-bottom: var(--space-lg);
+        }
+        
+        .hero-description {
+            font-size: var(--text-lg);
+            line-height: var(--leading-relaxed);
+            margin-bottom: var(--space-xl);
+            max-width: 55ch;
+        }
+        
+        /* === FOOTER === */
+        .footer {
+            padding: var(--space-4xl) var(--space-lg) var(--space-xl);
+        }
+        
+        .footer-grid {
+            gap: var(--space-2xl);
+        }
+        
+        
+        
+        /* === MOBILE OPTIMIZATIONS === */
+        @media (max-width: 768px) {
+            :root {
+                --text-base: 1rem; /* 16px en móvil */
+            }
+            
+            section {
+                padding-top: var(--space-3xl);
+                padding-bottom: var(--space-3xl);
+            }
+            
+            .hero {
+                padding: var(--space-4xl) var(--space-md) var(--space-3xl);
+            }
+            
+            .hero-title {
+                font-size: clamp(1.75rem, 7vw, 2.5rem);
+            }
+            
+            .hero-description {
+                font-size: var(--text-base);
+            }
+            
+            .section-header {
+                margin-bottom: var(--space-2xl);
+            }
+            
+            .product-grid,
+            .card-grid {
+                gap: var(--space-lg);
+            }
+            
+            .footer {
+                padding: var(--space-3xl) var(--space-md) var(--space-lg);
+            }
+        }
+        
+        /* === ELIMINAR BREADCRUMBS === */
+        .breadcrumb {
+            display: none !important;
+        }
+
+    
+        /* Footer: Logo simplificado (sin texto redundante) */
+        .footer-brand .footer-logo-only {
+            padding: 0.6rem 0.8rem;
+        }
+        
+        .footer-brand .footer-logo-only .logo-img {
+            height: 45px;
+        }
+
+
+        /* === IMPROVED CTA SECTION === */
+        .cta-section {
+            background: linear-gradient(135deg, #0f172a 0%, #1a1a2e 100%);
+            padding: 4rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.5;
+        }
+        
+        .cta-container {
+            max-width: 700px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .cta-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.1);
+            color: var(--sig-green);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .cta-title {
+            font-family: var(--font-display);
+            font-size: clamp(1.75rem, 4vw, 2.5rem);
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+        
+        .cta-description {
+            color: var(--gray-300);
+            font-size: 1.05rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 1.5rem;
+        }
+        
+        .cta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 1.75rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            min-width: 180px;
+            justify-content: center;
+        }
+        
+        .cta-btn svg {
+            flex-shrink: 0;
+        }
+        
+        .cta-btn-primary {
+            background: #25D366;
+            color: white;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+        }
+        
+        .cta-btn-primary:hover {
+            background: #20bd5a;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+        }
+        
+        .cta-btn-secondary {
+            background: rgba(255,255,255,0.1);
+            color: white;
+            border: 2px solid rgba(255,255,255,0.4);
+        }
+        
+        .cta-btn-secondary:hover {
+            background: rgba(255,255,255,0.1);
+            border-color: rgba(255,255,255,0.5);
+            transform: translateY(-2px);
+        }
+        
+        .cta-phone {
+            color: var(--gray-400);
+            font-size: 0.9rem;
+        }
+        
+        .cta-phone a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .cta-phone a:hover {
+            color: var(--sig-green);
+        }
+        
+        /* === IMPROVED RESPONSIVE === */
+        
+        /* Tablet landscape */
+        @media (max-width: 1024px) {
+            .cta-section {
+                padding: 3.5rem 1.5rem;
+            }
+        }
+        
+        /* Tablet portrait */
+        @media (max-width: 768px) {
+            .cta-section {
+                padding: 3rem 1.25rem;
+            }
+            
+            .cta-title {
+                font-size: 1.5rem;
+            }
+            
+            .cta-description {
+                font-size: 1rem;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .cta-btn {
+                width: 100%;
+                max-width: 280px;
+            }
+        }
+        
+        /* Mobile */
+        @media (max-width: 480px) {
+            .cta-section {
+                padding: 2.5rem 1rem;
+            }
+            
+            .cta-badge {
+                font-size: 0.8rem;
+                padding: 0.4rem 0.8rem;
+            }
+            
+            .cta-title {
+                font-size: 1.35rem;
+            }
+            
+            .cta-description {
+                font-size: 0.95rem;
+            }
+            
+            .cta-btn {
+                padding: 0.9rem 1.5rem;
+                font-size: 0.95rem;
+            }
+        }
+        
+        /* === IMPROVED PRODUCT LISTS === */
+        .product-list {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .product-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.25rem 1.5rem;
+            background: var(--white);
+            border-radius: 12px;
+            margin-bottom: 0.75rem;
+            transition: all 0.3s ease;
+            border: 1px solid var(--gray-100);
+        }
+        
+        .product-item:hover {
+            transform: translateX(8px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            border-color: var(--sig-red);
+        }
+        
+        .product-item svg {
+            width: 24px;
+            height: 24px;
+            color: var(--sig-red);
+            flex-shrink: 0;
+        }
+        
+        .product-item h4 {
+            font-family: var(--font-display);
+            font-weight: 600;
+            font-size: 1.05rem;
+            color: var(--gray-800);
+            margin-bottom: 0.25rem;
+        }
+        
+        .product-item p {
+            font-size: 0.9rem;
+            color: var(--gray-500);
+            margin: 0;
+            line-height: 1.4;
+        }
+        
+        @media (max-width: 768px) {
+            .product-item {
+                padding: 1rem 1.25rem;
+            }
+            
+            .product-item h4 {
+                font-size: 1rem;
+            }
+            
+            .product-item p {
+                font-size: 0.85rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .product-item {
+                padding: 1rem;
+                gap: 0.75rem;
+            }
+            
+            .product-item:hover {
+                transform: translateX(4px);
+            }
+            
+            .product-item svg {
+                width: 20px;
+                height: 20px;
+            }
+            
+            .product-item h4 {
+                font-size: 0.95rem;
+            }
+            
+            .product-item p {
+                font-size: 0.8rem;
+            }
+        }
+        
+        /* === IMPROVED TYPOGRAPHY & READABILITY === */
+        body {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility;
+        }
+        
+        /* Ensure minimum touch target size */
+        a, button {
+            min-height: 44px;
+            min-width: 44px;
+        }
+        
+        /* Better line heights */
+        p {
+            line-height: 1.7;
+        }
+        
+        /* === IMPROVED SECTION HEADERS === */
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: linear-gradient(135deg, rgba(196, 30, 58, 0.1), rgba(30, 86, 160, 0.1));
+            color: var(--sig-red);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .section-title {
+            font-family: var(--font-display);
+            font-size: clamp(1.75rem, 4vw, 2.5rem);
+            font-weight: 700;
+            color: var(--gray-800);
+            margin-bottom: 0.75rem;
+            line-height: 1.2;
+        }
+        
+        .section-subtitle {
+            color: var(--gray-500);
+            font-size: 1.05rem;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        
+        @media (max-width: 768px) {
+            .section-header {
+                margin-bottom: 2rem;
+            }
+            
+            .section-label {
+                font-size: 0.75rem;
+                padding: 0.4rem 0.8rem;
+            }
+            
+            .section-subtitle {
+                font-size: 0.95rem;
+            }
+        }
+        
+        /* === IMPROVED PAGE HERO === */
+        .page-hero {
+            background: linear-gradient(135deg, #0f172a 0%, #1a1a2e 100%);
+            padding: 8rem 2rem 4rem;
+            text-align: center;
+            position: relative;
+        }
+        
+        .page-hero h1 {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 0.5rem;
+        }
+        
+        .page-hero p {
+            color: var(--gray-300);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        @media (max-width: 768px) {
+            .page-hero {
+                padding: 7rem 1.5rem 3rem;
+            }
+            
+            .page-hero p {
+                font-size: 1rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .page-hero {
+                padding: 6rem 1rem 2.5rem;
+            }
+            
+            .page-hero h1 {
+                font-size: 1.75rem;
+            }
+            
+            .page-hero p {
+                font-size: 0.95rem;
+            }
+        }
+
+
+        /* === FINAL RESPONSIVE FIXES === */
+        
+        /* Better WhatsApp button on mobile */
+        @media (max-width: 480px) {
+            .whatsapp-btn {
+                bottom: 1rem;
+                right: 1rem;
+            }
+            
+            .whatsapp-btn a {
+                width: 55px;
+                height: 55px;
+            }
+            
+            .whatsapp-btn svg {
+                width: 26px;
+                height: 26px;
+            }
+        }
+        
+        /* Better footer on mobile */
+        @media (max-width: 480px) {
+            .footer {
+                padding: 2.5rem 1rem 1.5rem;
+            }
+            
+            .footer-container {
+                gap: 2rem;
+            }
+            
+            .footer-column h4 {
+                font-size: 0.9rem;
+                margin-bottom: 0.75rem;
+            }
+            
+            .footer-column li {
+                margin-bottom: 0.5rem;
+            }
+            
+            .footer-column a {
+                font-size: 0.9rem;
+                padding: 0.25rem 0;
+                display: inline-block;
+            }
+            
+            .footer-brand p {
+                font-size: 0.85rem;
+            }
+            
+            .footer-bottom {
+                font-size: 0.8rem;
+                padding-top: 1.5rem;
+                margin-top: 1.5rem;
+            }
+        }
+        
+        /* Better header on small mobile */
+        @media (max-width: 380px) {
+            .logo-img {
+                height: 32px;
+            }
+            
+            .header {
+                padding: 0.5rem 0.75rem;
+            }
+        }
+        
+        /* Ensure all clickable elements are easily tappable */
+        @media (max-width: 768px) {
+            .nav-menu > li > a,
+            .dropdown li a,
+            .footer-column a,
+            .btn {
+                min-height: 44px;
+                display: inline-flex;
+                align-items: center;
+            }
+        }
+        
+        /* Smooth scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Better focus states for accessibility */
+        a:focus-visible,
+        button:focus-visible {
+            outline: 2px solid var(--sig-blue);
+            outline-offset: 2px;
+        }
+        
+        /* Animation for CTA section */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+        
+        .cta-btn-primary {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .cta-btn-primary:hover {
+            animation: none;
         }
 
     </style>
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiI+CiAgPHJlY3Qgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIiByeD0iNiIgZmlsbD0iIzFhMWEyZSIvPgogIDx0ZXh0IHg9IjMiIHk9IjI0IiBmb250LWZhbWlseT0iQXJpYWwgQmxhY2ssIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiIGZvbnQtd2VpZ2h0PSI5MDAiPgogICAgPHRzcGFuIGZpbGw9IiNjNDFlM2EiPlM8L3RzcGFuPjx0c3BhbiBmaWxsPSIjMmU4YjU3Ij5JPC90c3Bhbj48dHNwYW4gZmlsbD0iIzFlNTZhMCI+RzwvdHNwYW4+CiAgPC90ZXh0Pgo8L3N2Zz4=">
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://sigoxigeno.com/blog">
+    <meta property="og:url" content="https://sigoxigeno.com/blog.html">
     <meta property="og:title" content="Blog | SIG - Artículos sobre Gases y Soldadura">
     <meta property="og:description" content="Artículos y guías sobre gases industriales, técnicas de soldadura y seguridad.">
     <meta property="og:image" content="https://static.wixstatic.com/media/69845a_d41e342becd9464dbc44ccd0f583b7fb~mv2.jpg">
@@ -1608,37 +2388,9 @@
     <meta name="twitter:title" content="Blog | SIG - Artículos sobre Gases y Soldadura">
     <meta name="twitter:description" content="Artículos y guías sobre gases industriales, técnicas de soldadura y seguridad.">
     <meta name="twitter:image" content="https://static.wixstatic.com/media/69845a_d41e342becd9464dbc44ccd0f583b7fb~mv2.jpg">
-    <link rel="canonical" href="https://sigoxigeno.com/blog">
+    <link rel="canonical" href="https://sigoxigeno.com/blog.html">
     <meta name="robots" content="index, follow">
 
-
-</head>
-
-        /* Dropdown táctil en móvil */
-        @media (max-width: 768px) {
-            .dropdown {
-                position: static;
-                transform: none;
-                box-shadow: none;
-                max-height: 0;
-                overflow: hidden;
-                opacity: 1;
-                visibility: visible;
-                transition: max-height 0.3s;
-                background: var(--gray-50);
-                border-radius: 0;
-                min-width: 100%;
-            }
-            .dropdown.show {
-                max-height: 500px;
-            }
-            .dropdown a {
-                padding-left: 3rem;
-            }
-            .nav-menu > li:hover .dropdown {
-                transform: none;
-            }
-        }
     <style id="active-indicator-style">
         /* Header transparente - texto blanco con underline rojo */
         .nav-menu > li > a.active {
@@ -1657,16 +2409,12 @@
             border-radius: 2px !important;
         }
         
-        /* Header con scroll (fondo blanco) - texto rojo con underline rojo */
+        /* Header con scroll (fondo blanco) - texto rojo */
         .header.scrolled .nav-menu > li > a.active {
             color: #c41e3a !important;
         }
-        .header.scrolled .nav-menu > li > a.active::after {
-            bottom: -8px !important;
-            background: #c41e3a !important;
-        }
         
-        /* MÓVIL - menú hamburger */
+        /* MÓVIL */
         @media (max-width: 768px) {
             .nav-menu > li > a.active {
                 color: #c41e3a !important;
@@ -1681,7 +2429,36 @@
             }
         }
     </style>
-    <body>
+
+    <style id="dropdown-mobile-style">
+        @media (max-width: 768px) {
+            .dropdown {
+                position: static !important;
+                transform: none !important;
+                box-shadow: none !important;
+                max-height: 0;
+                overflow: hidden;
+                opacity: 1 !important;
+                visibility: visible !important;
+                transition: max-height 0.3s ease;
+                background: var(--gray-50);
+                border-radius: 0;
+                min-width: 100%;
+            }
+            .dropdown.show {
+                max-height: 500px;
+            }
+            .dropdown a {
+                padding-left: 3rem !important;
+            }
+            .nav-menu > li:hover .dropdown {
+                transform: none !important;
+                max-height: 0;
+            }
+        }
+    </style>
+</head>
+<body>
     <header class="header" id="header">
         <div class="header-container">
             <!-- ✅ Logo mejorado con glassmorphism y bloque de marca -->
@@ -1727,155 +2504,63 @@
     
     <section class="page-hero">
         <div class="page-hero-content">
+            <div class="breadcrumb">
+                <a href="index.html">Inicio</a>
+                <span class="separator">/</span>
+                <span>Blog</span>
+            </div>
             <h1>Blog SIG</h1>
             <p>Artículos, guías y novedades sobre gases industriales, soldadura y seguridad</p>
         </div>
     </section>
     
-        <section class="section">
+    <section class="section">
         <div class="blog-grid">
-            <!-- Post 1: Gas para soldar -->
             <article class="blog-card">
-                <a href="post-gas-soldar.html" class="blog-card-image">
-                    <img src="https://static.wixstatic.com/media/69845a_d41e342becd9464dbc44ccd0f583b7fb~mv2.jpg" alt="Gas para soldar" loading="lazy">
-                </a>
+                <a href="post-gas-soldar.html" class="blog-card-link" aria-hidden="true"></a>
+                <div class="blog-card-image">
+                    <img src="https://static.wixstatic.com/media/69845a_d41e342becd9464dbc44ccd0f583b7fb~mv2.jpg" alt="Gases para soldar" loading="lazy">
+                </div>
                 <div class="blog-card-content">
-                    <div class="blog-card-meta">
-                        <span class="blog-date">10 feb 2025</span>
-                        <span class="blog-read">1 min de lectura</span>
-                    </div>
+                    <div class="blog-card-meta">10 de febrero, 2025</div>
                     <h3><a href="post-gas-soldar.html">¿Qué tipo de gas industrial debo utilizar para soldar?</a></h3>
-                    <p>El gas que debes utilizar para soldar depende del tipo de soldadura y del material con el que estás trabajando...</p>
-                    <div class="blog-card-stats">
-                        <span class="stat-item stat-views" title="Visualizaciones">
-                            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
-                            <span class="stat-value">7</span>
-                        </span>
-                        <span class="stat-item stat-comments" title="Comentarios">
-                            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M21.99 4c0-1.1-.89-2-1.99-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14l4 4-.01-18z"/></svg>
-                            <span class="stat-value">0</span>
-                        </span>
-                        <span class="stat-item stat-likes likes" title="Me gusta">
-                            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
-                            <span class="stat-value">1</span>
-                        </span>
-                    </div>
+                    <p>Guía completa sobre los diferentes gases utilizados en procesos de soldadura: argón, CO₂, mezclas y acetileno.</p>
                 </div>
             </article>
             
-            <!-- Post 2: Oxígeno industria -->
             <article class="blog-card">
-                <a href="post-oxigeno-industria.html" class="blog-card-image">
-                    <img src="https://static.wixstatic.com/media/69845a_ddd1c441590b44f6954696432d8bab28~mv2.png" alt="Oxígeno industrial" loading="lazy">
-                </a>
+                <a href="post-oxigeno-industria.html" class="blog-card-link" aria-hidden="true"></a>
+                <div class="blog-card-image">
+                    <img src="https://static.wixstatic.com/media/69845a_c8df2872147e4fb0aecdaac655c1a3d5~mv2.png" alt="Oxígeno industrial" loading="lazy">
+                </div>
                 <div class="blog-card-content">
-                    <div class="blog-card-meta">
-                        <span class="blog-date">10 feb 2025</span>
-                        <span class="blog-read">1 min de lectura</span>
-                    </div>
+                    <div class="blog-card-meta">10 de febrero, 2025</div>
                     <h3><a href="post-oxigeno-industria.html">Importancia del oxígeno en la industria</a></h3>
-                    <p>El oxígeno es uno de los gases industriales más versátiles. Se usa en la fabricación de acero para aumentar la temperatura de los hornos...</p>
-                    <div class="blog-card-stats">
-                        <span class="stat-item stat-views" title="Visualizaciones">
-                            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
-                            <span class="stat-value">12</span>
-                        </span>
-                        <span class="stat-item stat-comments" title="Comentarios">
-                            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M21.99 4c0-1.1-.89-2-1.99-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14l4 4-.01-18z"/></svg>
-                            <span class="stat-value">0</span>
-                        </span>
-                        <span class="stat-item stat-likes likes" title="Me gusta">
-                            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
-                            <span class="stat-value">1</span>
-                        </span>
-                    </div>
+                    <p>Descubra las múltiples aplicaciones del oxígeno en metalurgia, química, salud, alimentaria y medio ambiente.</p>
                 </div>
             </article>
             
-            <!-- Post 3: Argón -->
             <article class="blog-card">
-                <a href="post-argon-industria.html" class="blog-card-image">
-                    <img src="https://static.wixstatic.com/media/69845a_617b4a9c12b24e78955113161ea655a3~mv2.png" alt="Gas Argón" loading="lazy">
-                </a>
+                <a href="post-argon-industria.html" class="blog-card-link" aria-hidden="true"></a>
+                <div class="blog-card-image">
+                    <img src="https://static.wixstatic.com/media/69845a_d41e342becd9464dbc44ccd0f583b7fb~mv2.jpg" alt="Gas Argón" loading="lazy">
+                </div>
                 <div class="blog-card-content">
-                    <div class="blog-card-meta">
-                        <span class="blog-date">11 mar 2024</span>
-                        <span class="blog-read">1 min de lectura</span>
-                    </div>
+                    <div class="blog-card-meta">11 de marzo, 2024</div>
                     <h3><a href="post-argon-industria.html">¿Qué usos tiene el gas Argón en la industria?</a></h3>
-                    <p>El argón es un gas inerte que cuenta con diversas aplicaciones en la industria debido a sus características únicas...</p>
-                    <div class="blog-card-stats">
-                        <span class="stat-item stat-views" title="Visualizaciones">
-                            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
-                            <span class="stat-value">39</span>
-                        </span>
-                        <span class="stat-item stat-comments" title="Comentarios">
-                            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M21.99 4c0-1.1-.89-2-1.99-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14l4 4-.01-18z"/></svg>
-                            <span class="stat-value">0</span>
-                        </span>
-                        <span class="stat-item stat-likes likes" title="Me gusta">
-                            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
-                            <span class="stat-value">4</span>
-                        </span>
-                    </div>
+                    <p>El argón como gas inerte esencial en soldadura, metalurgia, electrónica y conservación de productos.</p>
                 </div>
             </article>
             
-            <!-- Post 4: Soldadura certificada -->
             <article class="blog-card">
-                <a href="post-soldadura-certificada.html" class="blog-card-image">
-                    <img src="https://static.wixstatic.com/media/69845a_62c9026af91345a69d8b1278f0e77922~mv2.png" alt="Soldadura certificada" loading="lazy">
-                </a>
+                <a href="post-soldadura-certificada.html" class="blog-card-link" aria-hidden="true"></a>
+                <div class="blog-card-image">
+                    <img src="https://static.wixstatic.com/media/69845a_9aafa51dd01647c48562ba921d30556c~mv2.png" alt="Soldadura certificada" loading="lazy">
+                </div>
                 <div class="blog-card-content">
-                    <div class="blog-card-meta">
-                        <span class="blog-date">11 mar 2024</span>
-                        <span class="blog-read">1 min de lectura</span>
-                    </div>
+                    <div class="blog-card-meta">11 de marzo, 2024</div>
                     <h3><a href="post-soldadura-certificada.html">¿Por qué es importante utilizar soldadura certificada?</a></h3>
-                    <p>La soldadura certificada es de mucha importancia por diferentes razones: garantía de calidad y seguridad...</p>
-                    <div class="blog-card-stats">
-                        <span class="stat-item stat-views" title="Visualizaciones">
-                            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
-                            <span class="stat-value">12</span>
-                        </span>
-                        <span class="stat-item stat-comments" title="Comentarios">
-                            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M21.99 4c0-1.1-.89-2-1.99-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14l4 4-.01-18z"/></svg>
-                            <span class="stat-value">0</span>
-                        </span>
-                        <span class="stat-item stat-likes likes" title="Me gusta">
-                            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
-                            <span class="stat-value">5</span>
-                        </span>
-                    </div>
-                </div>
-            </article>
-            
-            <!-- Post 5: Diferencia oxígeno medicinal vs industrial -->
-            <article class="blog-card">
-                <a href="post-oxigeno-diferencia.html" class="blog-card-image">
-                    <img src="https://static.wixstatic.com/media/69845a_ddd1c441590b44f6954696432d8bab28~mv2.png" alt="Oxígeno medicinal vs industrial" loading="lazy">
-                </a>
-                <div class="blog-card-content">
-                    <div class="blog-card-meta">
-                        <span class="blog-date">11 mar 2024</span>
-                        <span class="blog-read">2 min de lectura</span>
-                    </div>
-                    <h3><a href="post-oxigeno-diferencia.html">Diferencia entre oxígeno medicinal y oxígeno industrial</a></h3>
-                    <p>El oxígeno es un elemento vital para la vida en la Tierra y juega un papel crucial en una amplia gama de aplicaciones industriales...</p>
-                    <div class="blog-card-stats">
-                        <span class="stat-item stat-views" title="Visualizaciones">
-                            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
-                            <span class="stat-value">38</span>
-                        </span>
-                        <span class="stat-item stat-comments" title="Comentarios">
-                            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M21.99 4c0-1.1-.89-2-1.99-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14l4 4-.01-18z"/></svg>
-                            <span class="stat-value">0</span>
-                        </span>
-                        <span class="stat-item stat-likes likes" title="Me gusta">
-                            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
-                            <span class="stat-value">3</span>
-                        </span>
-                    </div>
+                    <p>La importancia de la calidad, trazabilidad y respaldo del fabricante en consumibles de soldadura.</p>
                 </div>
             </article>
         </div>
@@ -1968,509 +2653,34 @@
         });
     </script>
 
-    
-
-
-    
-
-    
-
-
-    <script>
-
-    <script>
-    // ========== SISTEMA DE STATS CON FALLBACK A LOCALSTORAGE ==========
-    
-    const API_URL = '/.netlify/functions/stats';
-    let useLocalStorage = false; // Se activa si el servidor no responde
-    
-    // Stats originales (base)
-    const ORIGINAL_STATS = {
-        'post-gas-soldar': {views: 7, comments: 0, likes: 1},
-        'post-oxigeno-industria': {views: 12, comments: 0, likes: 1},
-        'post-argon-industria': {views: 39, comments: 0, likes: 4},
-        'post-soldadura-certificada': {views: 12, comments: 0, likes: 5},
-        'post-oxigeno-diferencia': {views: 38, comments: 0, likes: 3}
-    };
-    
-    // Generar ID único de visitante
-    function getVisitorId() {
-        let visitorId = localStorage.getItem('sig_visitor_id');
-        if (!visitorId) {
-            visitorId = 'v_' + Math.random().toString(36).substr(2, 9) + '_' + Date.now();
-            localStorage.setItem('sig_visitor_id', visitorId);
-        }
-        return visitorId;
-    }
-    
-    // ========== FUNCIONES DE LOCALSTORAGE ==========
-    
-    function getLocalStats(postId) {
-        const stored = localStorage.getItem('blog_stats_' + postId);
-        if (stored) {
-            const local = JSON.parse(stored);
-            return {
-                views: ORIGINAL_STATS[postId].views + (local.extraViews || 0),
-                likes: ORIGINAL_STATS[postId].likes + (local.extraLikes || 0),
-                comments: local.comments || 0
-            };
-        }
-        return {...ORIGINAL_STATS[postId]};
-    }
-    
-    function saveLocalStats(postId, extraViews, extraLikes, comments) {
-        localStorage.setItem('blog_stats_' + postId, JSON.stringify({
-            extraViews, extraLikes, comments
-        }));
-    }
-    
-    function hasLocalViewed(postId) {
-        return localStorage.getItem('viewed_' + postId) === 'true';
-    }
-    
-    function setLocalViewed(postId) {
-        localStorage.setItem('viewed_' + postId, 'true');
-    }
-    
-    function hasLocalLiked(postId) {
-        return localStorage.getItem('liked_' + postId) === 'true';
-    }
-    
-    function toggleLocalLike(postId) {
-        const liked = hasLocalLiked(postId);
-        localStorage.setItem('liked_' + postId, (!liked).toString());
-        return !liked;
-    }
-    
-    function getLocalComments(postId) {
-        const stored = localStorage.getItem('comments_' + postId);
-        return stored ? JSON.parse(stored) : [];
-    }
-    
-    function addLocalComment(postId, comment) {
-        const comments = getLocalComments(postId);
-        comments.unshift(comment);
-        localStorage.setItem('comments_' + postId, JSON.stringify(comments));
-        return comments;
-    }
-    
-    // ========== FUNCIONES DE API ==========
-    
-    async function checkServerAvailable() {
-        try {
-            const response = await fetch(API_URL, { method: 'GET' });
-            return response.ok;
-        } catch {
-            return false;
-        }
-    }
-    
-    async function loadStats() {
-        if (useLocalStorage) {
-            const stats = {};
-            Object.keys(ORIGINAL_STATS).forEach(id => {
-                stats[id] = getLocalStats(id);
-            });
-            return stats;
-        }
-        
-        try {
-            const response = await fetch(API_URL);
-            if (response.ok) {
-                return await response.json();
-            }
-        } catch {
-            useLocalStorage = true;
-            console.log('Usando localStorage (servidor no disponible)');
-        }
-        
-        // Fallback a localStorage
-        const stats = {};
-        Object.keys(ORIGINAL_STATS).forEach(id => {
-            stats[id] = getLocalStats(id);
-        });
-        return stats;
-    }
-    
-    async function registerView(postId) {
-        if (hasLocalViewed(postId)) return;
-        
-        setLocalViewed(postId);
-        
-        // Actualizar localStorage
-        const current = getLocalStats(postId);
-        const stored = JSON.parse(localStorage.getItem('blog_stats_' + postId) || '{}');
-        saveLocalStats(postId, (stored.extraViews || 0) + 1, stored.extraLikes || 0, stored.comments || 0);
-        
-        if (!useLocalStorage) {
-            try {
-                await fetch(API_URL + '/view', {
-                    method: 'POST',
-                    headers: {'Content-Type': 'application/json'},
-                    body: JSON.stringify({ postId, visitorId: getVisitorId() })
-                });
-            } catch {
-                console.log('Vista guardada localmente');
-            }
-        }
-    }
-    
-    async function toggleLike(postId) {
-        const nowLiked = toggleLocalLike(postId);
-        
-        // Actualizar localStorage
-        const stored = JSON.parse(localStorage.getItem('blog_stats_' + postId) || '{}');
-        let extraLikes = stored.extraLikes || 0;
-        
-        if (nowLiked) {
-            extraLikes++;
-        } else {
-            extraLikes = Math.max(0, extraLikes - 1);
-        }
-        
-        saveLocalStats(postId, stored.extraViews || 0, extraLikes, stored.comments || 0);
-        
-        const newStats = getLocalStats(postId);
-        
-        if (!useLocalStorage) {
-            try {
-                await fetch(API_URL + '/like', {
-                    method: 'POST',
-                    headers: {'Content-Type': 'application/json'},
-                    body: JSON.stringify({ postId, visitorId: getVisitorId() })
-                });
-            } catch {
-                console.log('Like guardado localmente');
-            }
-        }
-        
-        return { liked: nowLiked, likes: newStats.likes };
-    }
-    
-    async function addComment(postId, name, email, text) {
-        const comment = {
-            name, email, text,
-            created_at: new Date().toISOString()
-        };
-        
-        // Guardar en localStorage
-        addLocalComment(postId, comment);
-        
-        // Actualizar contador
-        const stored = JSON.parse(localStorage.getItem('blog_stats_' + postId) || '{}');
-        const comments = getLocalComments(postId).length;
-        saveLocalStats(postId, stored.extraViews || 0, stored.extraLikes || 0, comments);
-        
-        if (!useLocalStorage) {
-            try {
-                await fetch(API_URL + '/comment', {
-                    method: 'POST',
-                    headers: {'Content-Type': 'application/json'},
-                    body: JSON.stringify({ postId, name, email, text })
-                });
-            } catch {
-                console.log('Comentario guardado localmente');
-            }
-        }
-        
-        return { success: true, comment };
-    }
-    
-    async function getComments(postId) {
-        // Siempre mostrar comentarios locales
-        const localComments = getLocalComments(postId);
-        
-        if (!useLocalStorage) {
-            try {
-                const response = await fetch(API_URL + '/comments/' + postId);
-                if (response.ok) {
-                    const serverComments = await response.json();
-                    // Combinar comentarios (evitar duplicados por email+fecha)
-                    const combined = [...serverComments];
-                    localComments.forEach(lc => {
-                        if (!combined.find(sc => sc.email === lc.email && sc.text === lc.text)) {
-                            combined.push(lc);
+    <script id="dropdown-mobile-js">
+    (function() {
+        document.querySelectorAll('.nav-menu > li').forEach(function(li) {
+            var dropdown = li.querySelector('.dropdown');
+            if (dropdown) {
+                var link = li.querySelector('a');
+                link.addEventListener('click', function(e) {
+                    if (window.innerWidth <= 768) {
+                        e.preventDefault();
+                        var isOpen = dropdown.classList.contains('show');
+                        document.querySelectorAll('.dropdown.show').forEach(function(d) {
+                            d.classList.remove('show');
+                        });
+                        if (!isOpen) {
+                            dropdown.classList.add('show');
                         }
-                    });
-                    return combined.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
-                }
-            } catch {
-                console.log('Mostrando comentarios locales');
-            }
-        }
-        
-        return localComments;
-    }
-    
-    // ========== UI ==========
-    
-    function updateStatsUI(postId, card, stats) {
-        const viewsEl = card.querySelector('.stat-views .stat-value');
-        const commentsEl = card.querySelector('.stat-comments .stat-value');
-        const likesEl = card.querySelector('.stat-likes .stat-value');
-        
-        if (viewsEl && stats.views !== undefined) viewsEl.textContent = stats.views;
-        if (commentsEl && stats.comments !== undefined) commentsEl.textContent = stats.comments;
-        if (likesEl && stats.likes !== undefined) likesEl.textContent = stats.likes;
-    }
-    
-    // ========== INICIALIZACIÓN ==========
-    
-    document.addEventListener('DOMContentLoaded', async function() {
-        // Verificar si el servidor está disponible
-        const serverAvailable = await checkServerAvailable();
-        if (!serverAvailable) {
-            useLocalStorage = true;
-            console.log('Modo offline: usando localStorage');
-        }
-        
-        // Cargar stats
-        const stats = await loadStats();
-        
-        const blogCards = document.querySelectorAll('.blog-card');
-        
-        for (const card of blogCards) {
-            const link = card.querySelector('a[href^="post-"]');
-            if (!link) continue;
-            
-            const postId = link.getAttribute('href').replace('.html', '');
-            const postStats = stats[postId] || ORIGINAL_STATS[postId] || {views: 0, comments: 0, likes: 0};
-            
-            // Actualizar UI
-            updateStatsUI(postId, card, postStats);
-            
-            // Verificar like
-            const liked = hasLocalLiked(postId);
-            const likeBtn = card.querySelector('.stat-likes');
-            if (likeBtn && liked) {
-                likeBtn.classList.add('liked');
-            }
-            
-            // Evento de like
-            if (likeBtn) {
-                likeBtn.style.cursor = 'pointer';
-                likeBtn.addEventListener('click', async function(e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    
-                    const result = await toggleLike(postId);
-                    if (result) {
-                        if (result.liked) {
-                            likeBtn.classList.add('liked');
-                        } else {
-                            likeBtn.classList.remove('liked');
-                        }
-                        const likesValue = likeBtn.querySelector('.stat-value');
-                        if (likesValue) likesValue.textContent = result.likes;
                     }
                 });
             }
-            
-            // Evento de comentarios
-            const commentBtn = card.querySelector('.stat-comments');
-            if (commentBtn) {
-                commentBtn.style.cursor = 'pointer';
-                commentBtn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    openCommentModal(postId);
+        });
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.nav-menu > li')) {
+                document.querySelectorAll('.dropdown.show').forEach(function(d) {
+                    d.classList.remove('show');
                 });
             }
-            
-            // Registrar vista al click
-            const postLinks = card.querySelectorAll('a[href^="post-"]');
-            postLinks.forEach(postLink => {
-                postLink.addEventListener('click', function() {
-                    registerView(postId);
-                });
-            });
-        }
-    });
-    
-    // ========== MODAL DE COMENTARIOS ==========
-    
-    async function openCommentModal(postId) {
-        let modal = document.getElementById('commentModal');
-        if (!modal) {
-            modal = document.createElement('div');
-            modal.id = 'commentModal';
-            modal.innerHTML = `
-                <div class="modal-overlay" onclick="closeCommentModal()"></div>
-                <div class="modal-content">
-                    <button class="modal-close" onclick="closeCommentModal()">&times;</button>
-                    <h3>Comentarios</h3>
-                    <div id="commentsList" class="comments-list"></div>
-                    <form id="commentForm">
-                        <input type="hidden" id="commentPostId" value="">
-                        <div class="form-group">
-                            <label for="commentName">Nombre *</label>
-                            <input type="text" id="commentName" required placeholder="Tu nombre">
-                        </div>
-                        <div class="form-group">
-                            <label for="commentEmail">Email *</label>
-                            <input type="email" id="commentEmail" required placeholder="tu@email.com">
-                        </div>
-                        <div class="form-group">
-                            <label for="commentText">Comentario *</label>
-                            <textarea id="commentText" rows="3" required placeholder="Escribe tu comentario..."></textarea>
-                        </div>
-                        <button type="submit" class="btn-submit">Enviar comentario</button>
-                    </form>
-                </div>
-            `;
-            document.body.appendChild(modal);
-            
-            // Estilos
-            const style = document.createElement('style');
-            style.textContent = `
-                #commentModal { display: none; position: fixed; inset: 0; z-index: 9999; }
-                #commentModal.active { display: block; }
-                .modal-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.6); backdrop-filter: blur(4px); }
-                .modal-content { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; padding: 2rem; border-radius: 16px; max-width: 500px; width: 90%; max-height: 85vh; overflow-y: auto; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25); }
-                .modal-close { position: absolute; top: 1rem; right: 1rem; background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #666; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
-                .modal-close:hover { background: #f0f0f0; }
-                .modal-content h3 { margin-bottom: 1rem; color: var(--sig-green); font-size: 1.25rem; }
-                .comments-list { max-height: 200px; overflow-y: auto; margin-bottom: 1.5rem; border-bottom: 1px solid #eee; padding-bottom: 1rem; }
-                .comment-item { padding: 0.75rem; background: #f8f9fa; border-radius: 8px; margin-bottom: 0.5rem; }
-                .comment-header { display: flex; justify-content: space-between; margin-bottom: 0.25rem; font-size: 0.8rem; }
-                .comment-name { font-weight: 600; color: var(--sig-green); }
-                .comment-date { color: #888; }
-                .comment-text { color: #444; font-size: 0.9rem; line-height: 1.4; }
-                .no-comments { color: #888; text-align: center; padding: 1rem; }
-                .form-group { margin-bottom: 1rem; }
-                .form-group label { display: block; margin-bottom: 0.4rem; font-weight: 500; color: #333; font-size: 0.9rem; }
-                .form-group input, .form-group textarea { width: 100%; padding: 0.6rem 0.75rem; border: 1px solid #ddd; border-radius: 8px; font-size: 0.95rem; }
-                .form-group input:focus, .form-group textarea:focus { outline: none; border-color: #c41e3a; }
-                .btn-submit { width: 100%; padding: 0.75rem; background: linear-gradient(135deg, #c41e3a, #a01830); color: white; border: none; border-radius: 8px; font-size: 1rem; font-weight: 500; cursor: pointer; }
-                .btn-submit:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(196, 30, 58, 0.3); }
-                .stat-likes.liked svg { fill: #e74c3c !important; transform: scale(1.15); }
-                .stat-likes { transition: transform 0.2s; }
-                .stat-likes:hover { transform: scale(1.1); }
-            `;
-            document.head.appendChild(style);
-            
-            // Form submit
-            document.getElementById('commentForm').addEventListener('submit', async function(e) {
-                e.preventDefault();
-                const postId = document.getElementById('commentPostId').value;
-                const name = document.getElementById('commentName').value;
-                const email = document.getElementById('commentEmail').value;
-                const text = document.getElementById('commentText').value;
-                
-                const btn = this.querySelector('.btn-submit');
-                btn.textContent = 'Enviando...';
-                btn.disabled = true;
-                
-                await addComment(postId, name, email, text);
-                
-                document.getElementById('commentName').value = '';
-                document.getElementById('commentEmail').value = '';
-                document.getElementById('commentText').value = '';
-                
-                await displayComments(postId);
-                
-                // Actualizar contador
-                const card = document.querySelector(`a[href="${postId}.html"]`)?.closest('.blog-card');
-                if (card) {
-                    const stats = await loadStats();
-                    updateStatsUI(postId, card, stats[postId]);
-                }
-                
-                btn.textContent = 'Enviar comentario';
-                btn.disabled = false;
-            });
-        }
-        
-        document.getElementById('commentPostId').value = postId;
-        await displayComments(postId);
-        modal.classList.add('active');
-    }
-    
-    function closeCommentModal() {
-        document.getElementById('commentModal')?.classList.remove('active');
-    }
-    
-    async function displayComments(postId) {
-        const list = document.getElementById('commentsList');
-        list.innerHTML = '<p class="no-comments">Cargando...</p>';
-        
-        const comments = await getComments(postId);
-        
-        if (comments.length === 0) {
-            list.innerHTML = '<p class="no-comments">No hay comentarios aún. ¡Sé el primero!</p>';
-        } else {
-            list.innerHTML = comments.map(c => `
-                <div class="comment-item">
-                    <div class="comment-header">
-                        <span class="comment-name">${c.name}</span>
-                        <span class="comment-date">${new Date(c.created_at).toLocaleDateString('es-CO')}</span>
-                    </div>
-                    <p class="comment-text">${c.text}</p>
-                </div>
-            `).join('');
-        }
-    }
-    </script>
-
-    <script id="active-page-script">
-    (function() {
-        var path = window.location.pathname;
-        var currentPage = path.split('/').pop() || 'index';
-        
-        // Quitar .html si existe
-        currentPage = currentPage.replace('.html', '');
-        
-        // Manejar raíz
-        if (currentPage === '' || path === '/') currentPage = 'index';
-        
-        document.addEventListener('DOMContentLoaded', function() {
-            var links = document.querySelectorAll('.nav-menu > li > a');
-            links.forEach(function(link) {
-                var href = link.getAttribute('href');
-                var linkPage = href.replace('.html', '');
-                
-                if (linkPage === currentPage) {
-                    link.classList.add('active');
-                }
-                // Subpáginas de blog
-                if (currentPage.startsWith('post-') && linkPage === 'blog') {
-                    link.classList.add('active');
-                }
-                // Subpáginas de productos
-                if (['gases','soldadura','extintores','seguridad-industrial','equipos-elementos','homecare','otros'].includes(currentPage) && linkPage === 'productos') {
-                    link.classList.add('active');
-                }
-            });
         });
     })();
     </script>
-
-    <script>
-        // Dropdown táctil para móvil
-        (function() {
-            var dropdownParents = document.querySelectorAll('.nav-menu > li');
-            dropdownParents.forEach(function(li) {
-                var dropdown = li.querySelector('.dropdown');
-                if (dropdown) {
-                    var link = li.querySelector('a');
-                    link.addEventListener('click', function(e) {
-                        if (window.innerWidth <= 768) {
-                            e.preventDefault();
-                            dropdown.classList.toggle('show');
-                        }
-                    });
-                }
-            });
-            
-            document.addEventListener('click', function(e) {
-                if (!e.target.closest('.nav-menu')) {
-                    document.querySelectorAll('.dropdown.show').forEach(function(d) {
-                        d.classList.remove('show');
-                    });
-                }
-            });
-        })();
-    </script>
-
 </body>
 </html>

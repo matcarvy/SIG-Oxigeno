@@ -68,7 +68,6 @@
             left: 0;
             right: 0;
             height: 2px;
-            z-index: 2;
             background: linear-gradient(90deg, var(--sig-red), var(--sig-green), var(--sig-blue));
             opacity: 0.6;
         }
@@ -188,7 +187,7 @@
             to { opacity: 1; transform: translateY(0); }
         }
         
-        .nav-menu > li { position: relative; z-index: 10; }
+        .nav-menu > li { position: relative; }
         
         .nav-menu > li > a {
             display: block;
@@ -203,6 +202,7 @@
         }
         
         .nav-menu > li > a:hover {
+            background: rgba(255,255,255,0.1);
             color: var(--white);
         }
         
@@ -231,7 +231,6 @@
         }
         
         .dropdown {
-            z-index: 100;
             position: absolute;
             top: calc(100% + 10px);
             left: 50%;
@@ -248,7 +247,6 @@
         }
         
         .nav-menu > li:hover .dropdown {
-            z-index: 100;
             opacity: 1;
             visibility: visible;
             transform: translateX(-50%) translateY(0);
@@ -287,7 +285,6 @@
             display: block;
             width: 24px;
             height: 2px;
-            z-index: 2;
             background: currentColor;
             margin: 5px 0;
             transition: all 0.3s;
@@ -309,7 +306,7 @@
             position: absolute;
             inset: 0;
             background: url('https://static.wixstatic.com/media/69845a_d41e342becd9464dbc44ccd0f583b7fb~mv2.jpg') center/cover;
-            opacity: 0.15;
+            opacity: 0.4;
         }
         
         /* ✅ MEJORA 5: Marca de agua SIG muy sutil */
@@ -354,6 +351,7 @@
             align-items: center;
             gap: 0.5rem;
             padding: 0.5rem 1rem;
+            background: rgba(255,255,255,0.1);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255,255,255,0.15);
             border-radius: var(--radius-sm);
@@ -398,7 +396,7 @@
             width: 100%;
             height: 4px;
             background: var(--sig-red);
-            opacity: 0.35;
+            opacity: 0.4;
             border-radius: 2px;
             animation: underlineGrow 1s ease-out 1s both;
         }
@@ -456,6 +454,7 @@
         }
         
         .btn-secondary {
+            background: rgba(255,255,255,0.1);
             color: var(--white);
             border: 1px solid rgba(255,255,255,0.2);
             backdrop-filter: blur(10px);
@@ -703,7 +702,7 @@
         .about-content p {
             color: var(--gray-600);
             margin-bottom: 1rem;
-            font-size: 1.1rem;
+            font-size: 1.05rem;
         }
         
         .about-features {
@@ -762,7 +761,7 @@
         
         /* ============ CTA ============ */
         .cta {
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
             position: relative;
             overflow: hidden;
         }
@@ -771,11 +770,11 @@
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.3) 100%);
+            background: url('https://static.wixstatic.com/media/55a39e648ffb49c0bbd253dc5aae32e1.jpg') center/cover;
+            opacity: 0.15;
         }
         
         .cta-container {
-            z-index: 2;
             position: relative;
             z-index: 2;
             max-width: 800px;
@@ -867,6 +866,7 @@
         .footer-social a {
             width: 44px;
             height: 44px;
+            background: rgba(255,255,255,0.1);
             border-radius: var(--radius-sm);
             display: flex;
             align-items: center;
@@ -1062,12 +1062,13 @@
         .page-hero {
             position: relative;
             padding: 10rem 2rem 5rem;
-            background: #1a1a2e;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
             text-align: center;
             overflow: hidden;
         }
         
         .page-hero::before {
+            opacity_placeholder: replace;
             content: '';
             position: absolute;
             inset: 0;
@@ -1079,8 +1080,8 @@
             content: '';
             position: absolute;
             inset: 0;
-            background: transparent;
-            z-index: 2;
+            background: linear-gradient(135deg, rgba(26, 26, 46, 0.85) 0%, rgba(22, 33, 62, 0.9) 100%);
+            z-index: 1;
         }
         
         .page-hero-content {
@@ -1122,13 +1123,13 @@
         }
         
         .section {
-            padding: 3.5rem 2rem;
+            padding: 5rem 2rem;
         }
         
         .section-header {
             text-align: center;
             max-width: 700px;
-            margin: 0 auto 2.5rem;
+            margin: 0 auto 3rem;
         }
         
         .section-label {
@@ -1172,7 +1173,7 @@
         .content-text p {
             color: var(--gray-600);
             margin-bottom: 1.5rem;
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             line-height: 1.8;
         }
         
@@ -1526,7 +1527,7 @@
         /* Post Navigation */
         .post-navigation {
             max-width: 800px;
-            margin: 0 auto 2.5rem;
+            margin: 0 auto 3rem;
             padding: 0 2rem;
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -1634,6 +1635,7 @@
             gap: 0.5rem;
             margin-bottom: 1.5rem;
             font-size: 0.9rem;
+            background: rgba(255,255,255,0.1);
             padding: 0.5rem 1rem;
             border-radius: var(--radius-sm);
             backdrop-filter: blur(10px);
@@ -1680,7 +1682,7 @@
         .post-cta p {
             color: rgba(255,255,255,0.9);
             margin-bottom: 1.5rem;
-            font-size: 1.1rem;
+            font-size: 1.05rem;
         }
         
         .post-cta .btn {
@@ -1720,7 +1722,7 @@
             content: '';
             position: absolute;
             inset: 0;
-            z-index: 2;
+            z-index: 1;
         }
         
         .product-card:hover,
@@ -1760,7 +1762,7 @@
                 rgba(0, 0, 0, 0.4) 50%,
                 rgba(0, 0, 0, 0.2) 100%
             );
-            z-index: 2;
+            z-index: 1;
         }
         
         .hero-container {
@@ -2018,8 +2020,8 @@
 
         /* === IMPROVED CTA SECTION === */
         .cta-section {
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #1e3a5f 100%); 
-            padding: 3.5rem 2rem;
+            background: linear-gradient(135deg, #0f172a 0%, #1a1a2e 100%);
+            padding: 4rem 2rem;
             text-align: center;
             position: relative;
             overflow: hidden;
@@ -2032,21 +2034,20 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.2) 100%);
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.5;
         }
         
         .cta-container {
-            z-index: 2;
             max-width: 700px;
             margin: 0 auto;
             position: relative;
-            z-index: 2;
+            z-index: 1;
         }
         
         .cta-badge {
-            background: white;
-            color: var(--sig-green) !important;
             display: inline-block;
+            background: rgba(255,255,255,0.1);
             color: var(--sig-green);
             padding: 0.5rem 1rem;
             border-radius: 50px;
@@ -2066,8 +2067,8 @@
         }
         
         .cta-description {
-            color: rgba(255,255,255,0.85);
-            font-size: 1.1rem;
+            color: var(--gray-300);
+            font-size: 1.05rem;
             line-height: 1.6;
             margin-bottom: 2rem;
             max-width: 500px;
@@ -2102,24 +2103,25 @@
         }
         
         .cta-btn-primary {
-            background: #1fad54;
+            background: #25D366;
             color: white;
             box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
         }
         
         .cta-btn-primary:hover {
-            background: #1a9648;
+            background: #20bd5a;
             transform: translateY(-2px);
             box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
         }
         
         .cta-btn-secondary {
-            background: rgba(31, 173, 84, 0.15);
+            background: rgba(255,255,255,0.1);
             color: white;
-            border: 2px solid #1fad54;
+            border: 2px solid rgba(255,255,255,0.4);
         }
         
         .cta-btn-secondary:hover {
+            background: rgba(255,255,255,0.1);
             border-color: rgba(255,255,255,0.5);
             transform: translateY(-2px);
         }
@@ -2180,8 +2182,6 @@
             }
             
             .cta-badge {
-            background: white;
-            color: var(--sig-green) !important;
                 font-size: 0.8rem;
                 padding: 0.4rem 0.8rem;
             }
@@ -2234,7 +2234,7 @@
         .product-item h4 {
             font-family: var(--font-display);
             font-weight: 600;
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             color: var(--gray-800);
             margin-bottom: 0.25rem;
         }
@@ -2334,7 +2334,7 @@
         
         .section-subtitle {
             color: var(--gray-500);
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             max-width: 600px;
             margin: 0 auto;
             line-height: 1.6;
@@ -2355,7 +2355,52 @@
             }
         }
         
+        /* === IMPROVED PAGE HERO === */
+        .page-hero {
+            background: linear-gradient(135deg, #0f172a 0%, #1a1a2e 100%);
+            padding: 8rem 2rem 4rem;
+            text-align: center;
+            position: relative;
+        }
         
+        .page-hero h1 {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 0.5rem;
+        }
+        
+        .page-hero p {
+            color: var(--gray-300);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        @media (max-width: 768px) {
+            .page-hero {
+                padding: 7rem 1.5rem 3rem;
+            }
+            
+            .page-hero p {
+                font-size: 1rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .page-hero {
+                padding: 6rem 1rem 2.5rem;
+            }
+            
+            .page-hero h1 {
+                font-size: 1.75rem;
+            }
+            
+            .page-hero p {
+                font-size: 0.95rem;
+            }
+        }
 
 
         /* === FINAL RESPONSIVE FIXES === */
@@ -2463,14 +2508,11 @@
             animation: none;
         }
 
-    
-        }
-
     </style>
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiI+CiAgPHJlY3Qgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIiByeD0iNiIgZmlsbD0iIzFhMWEyZSIvPgogIDx0ZXh0IHg9IjMiIHk9IjI0IiBmb250LWZhbWlseT0iQXJpYWwgQmxhY2ssIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiIGZvbnQtd2VpZ2h0PSI5MDAiPgogICAgPHRzcGFuIGZpbGw9IiNjNDFlM2EiPlM8L3RzcGFuPjx0c3BhbiBmaWxsPSIjMmU4YjU3Ij5JPC90c3Bhbj48dHNwYW4gZmlsbD0iIzFlNTZhMCI+RzwvdHNwYW4+CiAgPC90ZXh0Pgo8L3N2Zz4=">
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://sigoxigeno.com/post-gas-soldar">
+    <meta property="og:url" content="https://sigoxigeno.com/post-gas-soldar.html">
     <meta property="og:title" content="SIG | Servicio Integral de Gases">
     <meta property="og:description" content="Gases industriales y medicinales, soldadura, seguridad industrial en Valle del Cauca.">
     <meta property="og:image" content="https://static.wixstatic.com/media/69845a_d41e342becd9464dbc44ccd0f583b7fb~mv2.jpg">
@@ -2482,37 +2524,9 @@
     <meta name="twitter:title" content="SIG | Servicio Integral de Gases">
     <meta name="twitter:description" content="Gases industriales y medicinales, soldadura, seguridad industrial en Valle del Cauca.">
     <meta name="twitter:image" content="https://static.wixstatic.com/media/69845a_d41e342becd9464dbc44ccd0f583b7fb~mv2.jpg">
-    <link rel="canonical" href="https://sigoxigeno.com/post-gas-soldar">
+    <link rel="canonical" href="https://sigoxigeno.com/post-gas-soldar.html">
     <meta name="robots" content="index, follow">
 
-
-</head>
-
-        /* Dropdown táctil en móvil */
-        @media (max-width: 768px) {
-            .dropdown {
-                position: static;
-                transform: none;
-                box-shadow: none;
-                max-height: 0;
-                overflow: hidden;
-                opacity: 1;
-                visibility: visible;
-                transition: max-height 0.3s;
-                background: var(--gray-50);
-                border-radius: 0;
-                min-width: 100%;
-            }
-            .dropdown.show {
-                max-height: 500px;
-            }
-            .dropdown a {
-                padding-left: 3rem;
-            }
-            .nav-menu > li:hover .dropdown {
-                transform: none;
-            }
-        }
     <style id="active-indicator-style">
         /* Header transparente - texto blanco con underline rojo */
         .nav-menu > li > a.active {
@@ -2531,16 +2545,12 @@
             border-radius: 2px !important;
         }
         
-        /* Header con scroll (fondo blanco) - texto rojo con underline rojo */
+        /* Header con scroll (fondo blanco) - texto rojo */
         .header.scrolled .nav-menu > li > a.active {
             color: #c41e3a !important;
         }
-        .header.scrolled .nav-menu > li > a.active::after {
-            bottom: -8px !important;
-            background: #c41e3a !important;
-        }
         
-        /* MÓVIL - menú hamburger */
+        /* MÓVIL */
         @media (max-width: 768px) {
             .nav-menu > li > a.active {
                 color: #c41e3a !important;
@@ -2555,7 +2565,36 @@
             }
         }
     </style>
-    <body>
+
+    <style id="dropdown-mobile-style">
+        @media (max-width: 768px) {
+            .dropdown {
+                position: static !important;
+                transform: none !important;
+                box-shadow: none !important;
+                max-height: 0;
+                overflow: hidden;
+                opacity: 1 !important;
+                visibility: visible !important;
+                transition: max-height 0.3s ease;
+                background: var(--gray-50);
+                border-radius: 0;
+                min-width: 100%;
+            }
+            .dropdown.show {
+                max-height: 500px;
+            }
+            .dropdown a {
+                padding-left: 3rem !important;
+            }
+            .nav-menu > li:hover .dropdown {
+                transform: none !important;
+                max-height: 0;
+            }
+        }
+    </style>
+</head>
+<body>
     <header class="header" id="header">
         <div class="header-container">
             <!-- ✅ Logo mejorado con glassmorphism y bloque de marca -->
@@ -2764,66 +2803,34 @@
         });
     </script>
 
-    
-    <script id="active-page-script">
+    <script id="dropdown-mobile-js">
     (function() {
-        var path = window.location.pathname;
-        var currentPage = path.split('/').pop() || 'index';
-        
-        // Quitar .html si existe
-        currentPage = currentPage.replace('.html', '');
-        
-        // Manejar raíz
-        if (currentPage === '' || path === '/') currentPage = 'index';
-        
-        document.addEventListener('DOMContentLoaded', function() {
-            var links = document.querySelectorAll('.nav-menu > li > a');
-            links.forEach(function(link) {
-                var href = link.getAttribute('href');
-                var linkPage = href.replace('.html', '');
-                
-                if (linkPage === currentPage) {
-                    link.classList.add('active');
-                }
-                // Subpáginas de blog
-                if (currentPage.startsWith('post-') && linkPage === 'blog') {
-                    link.classList.add('active');
-                }
-                // Subpáginas de productos
-                if (['gases','soldadura','extintores','seguridad-industrial','equipos-elementos','homecare','otros'].includes(currentPage) && linkPage === 'productos') {
-                    link.classList.add('active');
-                }
-            });
+        document.querySelectorAll('.nav-menu > li').forEach(function(li) {
+            var dropdown = li.querySelector('.dropdown');
+            if (dropdown) {
+                var link = li.querySelector('a');
+                link.addEventListener('click', function(e) {
+                    if (window.innerWidth <= 768) {
+                        e.preventDefault();
+                        var isOpen = dropdown.classList.contains('show');
+                        document.querySelectorAll('.dropdown.show').forEach(function(d) {
+                            d.classList.remove('show');
+                        });
+                        if (!isOpen) {
+                            dropdown.classList.add('show');
+                        }
+                    }
+                });
+            }
+        });
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.nav-menu > li')) {
+                document.querySelectorAll('.dropdown.show').forEach(function(d) {
+                    d.classList.remove('show');
+                });
+            }
         });
     })();
     </script>
-
-    <script>
-        // Dropdown táctil para móvil
-        (function() {
-            var dropdownParents = document.querySelectorAll('.nav-menu > li');
-            dropdownParents.forEach(function(li) {
-                var dropdown = li.querySelector('.dropdown');
-                if (dropdown) {
-                    var link = li.querySelector('a');
-                    link.addEventListener('click', function(e) {
-                        if (window.innerWidth <= 768) {
-                            e.preventDefault();
-                            dropdown.classList.toggle('show');
-                        }
-                    });
-                }
-            });
-            
-            document.addEventListener('click', function(e) {
-                if (!e.target.closest('.nav-menu')) {
-                    document.querySelectorAll('.dropdown.show').forEach(function(d) {
-                        d.classList.remove('show');
-                    });
-                }
-            });
-        })();
-    </script>
-
 </body>
 </html>
